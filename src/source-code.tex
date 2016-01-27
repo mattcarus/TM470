@@ -17,8 +17,8 @@
   frame=single,	                   % adds a frame around the code
   keepspaces=true,                 % keeps spaces in text, useful for keeping indentation of code (possibly needs columns=flexible)
   keywordstyle=\color{blue},       % keyword style
-  language=Octave,                 % the language of the code
-  otherkeywords={*,...},           % if you want to add more keywords to the set
+  language=Java,                 % the language of the code
+  morecomment=[s][\color{gray}]{@}{\ },	% for setting @Annotations to grey 
   numbers=left,                    % where to put the line-numbers; possible values are (none, left, right)
   numbersep=5pt,                   % how far the line-numbers are from the code
   numberstyle=\tiny\color{mygray}, % the style that is used for the line-numbers
@@ -32,4 +32,4 @@
   title=\lstname                   % show the filename of files included with \lstinputlisting; also try caption instead of title
 }
 
-\lstinputlisting[language=Java]{dummy_source.java}
+\lstinputlisting{dummy_source.java}
