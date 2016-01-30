@@ -2,6 +2,7 @@
 
 \definecolor{mygreen}{rgb}{0,0.6,0}
 \definecolor{mygray}{rgb}{0.5,0.5,0.5}
+\definecolor{annotationgray}{rgb}{0.25,0.25,0.25}
 \definecolor{mymauve}{rgb}{0.58,0,0.82}
 
 \lstset{ %
@@ -18,8 +19,10 @@
   keepspaces=true,                 % keeps spaces in text, useful for keeping indentation of code (possibly needs columns=flexible)
   keywordstyle=\color{blue},       % keyword style
   language=Java,                 % the language of the code
-  morecomment=[s][\color{gray}]{@}{\ },	% for setting @Annotations to grey 
-  numbers=left,                    % where to put the line-numbers; possible values are (none, left, right)
+  morecomment=[s][\color{annotationgray}]{@}{\ },	% for setting @Annotations to
+  % grey
+  numbers=left,                    % where to put the line-numbers; possible
+  % values are (none, left, right)
   numbersep=5pt,                   % how far the line-numbers are from the code
   numberstyle=\tiny\color{mygray}, % the style that is used for the line-numbers
   rulecolor=\color{black},         % if not set, the frame-color may be changed on line-breaks within not-black text (e.g. comments (green here))

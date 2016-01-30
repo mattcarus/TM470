@@ -1,0 +1,260 @@
+<?xml version="1.0"?>
+<!--
+IPTC - International Press Telecommunications Council
+20 Garrick Street, London WC2E 9BT, United Kingdom
+www.iptc.org
+
+See sportsml.xsd to view Non-Exclusive License Agreement for 
+International Press Telecommunications Council, which
+applies to this specification.
+
+New in 2.2:
+
+    deprecated the attribute shot-finish.
+
+-->
+<schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:sportsml="http://iptc.org/std/SportsML/2008-04-01/" targetNamespace="http://iptc.org/std/SportsML/2008-04-01/" version="2.2">
+
+    <attributeGroup name="eventStateCurling">
+        <attribute name="stone-idref" type="string" use="optional">
+            <annotation>
+                <documentation>A reference to an id of the stone used.</documentation>
+            </annotation>
+        </attribute>
+        <attribute name="player-idref" type="string" use="optional">
+            <annotation>
+                <documentation>A reference to the id of the player.</documentation>
+            </annotation>
+        </attribute>
+        <attribute name="team-idref" type="string" use="optional">
+            <annotation>
+                <documentation>A reference to the id of the team.</documentation>
+            </annotation>
+        </attribute>
+        <attribute name="end-number" type="string" use="optional">
+            <annotation>
+                <documentation>The number of the end. Rounds of normally 8+8 stones are called ends in curling.</documentation>
+            </annotation>
+        </attribute>
+    </attributeGroup>
+    
+    <element name="event-metadata-curling">
+        <annotation>
+            <documentation>An element holding sport-specific metadata about a curling game.</documentation>
+        </annotation>
+        <complexType>
+            <attributeGroup ref="sportsml:globalAttributes"/>
+            <attribute name="sheet" type="string" use="optional">
+                <annotation>
+                    <documentation>The playing field (ice) for one curling game is called the sheet. In various tournaments the sheets could be identified with numbers, letters or a combination.</documentation>
+                </annotation>
+            </attribute>
+            <attribute name="draw" type="string" use="optional">
+                <annotation>
+                    <documentation>In curling a game is also called a draw. This is not to be confused with the shot type draw. This attributes can be used to record any curling-specific identification this game/draw has.</documentation>
+                </annotation>
+            </attribute>
+        </complexType>
+    </element>
+    
+    <element name="team-stats-curling">
+        <annotation>
+            <documentation>Statistics summarizing the actions of one team.</documentation>
+        </annotation>
+        <complexType>
+            <sequence>
+                <element ref="sportsml:stats-curling-stone" minOccurs="0" maxOccurs="unbounded"/>
+                <element ref="sportsml:stats-curling-end" minOccurs="0" maxOccurs="unbounded"/>
+                <element ref="sportsml:stats-curling-accuracy" minOccurs="0" maxOccurs="unbounded"/>
+            </sequence>
+            <attributeGroup ref="sportsml:globalAttributes"/>
+            <attributeGroup ref="sportsml:coverageAttributes"/>
+        </complexType>
+    </element>
+    <element name="stats-curling-stone">
+        <annotation>
+            <documentation>Description of an individual stone used in a curling game.</documentation>
+        </annotation>
+        <complexType>
+            <attributeGroup ref="sportsml:globalAttributes"/>
+            <attributeGroup ref="sportsml:coverageAttributes"/>
+            <attribute name="stone-number" type="string" use="optional">
+                <annotation>
+                    <documentation>The number on the stone.</documentation>
+                </annotation>
+            </attribute>
+            <attribute name="stone-color" type="string" use="optional">
+                <annotation>
+                    <documentation>The color of the stone.</documentation>
+                </annotation>
+            </attribute>
+        </complexType>
+    </element>
+    
+    <element name="stats-curling-end">
+        <annotation>
+            <documentation>Statistics for one end (round) for one team in a curling game.</documentation>
+        </annotation>
+        <complexType>
+            <attributeGroup ref="sportsml:globalAttributes"/>
+            <attributeGroup ref="sportsml:coverageAttributes"/>
+            <attribute name="end-number" type="string" use="optional">
+                <annotation>
+                    <documentation>Which number the end has.</documentation>
+                </annotation>
+            </attribute>
+            <attribute name="score" type="string" use="optional">
+                <annotation>
+                    <documentation>What was the score for this team this end.</documentation>
+                </annotation>
+            </attribute>
+            <attribute name="throw-order" type="sportsml:throwOrder.Curling" use="optional">
+                <annotation>
+                    <documentation>What order of play, did this team play the first or last stone this end.</documentation>
+                </annotation>
+            </attribute>
+            <attribute name="time-used" type="string" use="optional">
+                <annotation>
+                    <documentation>How much time was used by this team this end.</documentation>
+                </annotation>
+            </attribute>
+        </complexType>
+    </element>
+    
+    <element name="stats-curling-accuracy">
+        <annotation>
+            <documentation>Holds the summary for shots and percentage for one team or one player and optionally for just one type of shots.</documentation>
+        </annotation>
+        <complexType>
+            <attributeGroup ref="sportsml:globalAttributes"/>
+            <attributeGroup ref="sportsml:coverageAttributes"/>
+            <attribute name="shot-type" type="sportsml:shotType.Curling" use="optional">
+                <annotation>
+                    <documentation>If the stats cover a specific shot-type.</documentation>
+                </annotation>
+            </attribute>
+            <attribute name="turn" type="sportsml:turnType.Curling" use="optional">
+                <annotation>
+                    <documentation>If the stats show the values for a specific turn-type inhand or outhand.</documentation>
+                </annotation>
+            </attribute>
+            <attribute name="percentage" type="sportsml:shotResult.Curling" use="optional">
+                <annotation>
+                    <documentation>The calculated percentage of the shots covered in this stats summary.</documentation>
+                </annotation>
+            </attribute>
+            <attribute name="number-of-shots" type="string" use="optional">
+                <annotation>
+                    <documentation>Number of shots covered in this stats summary.</documentation>
+                </annotation>
+            </attribute>
+        </complexType>
+    </element>
+    
+    <element name="player-metadata-curling">
+        <annotation>
+            <documentation>Holds metadata specific to a curling player.</documentation>
+        </annotation>
+        <complexType>
+            <attributeGroup ref="sportsml:globalAttributes"/>
+            <attribute name="delivery" type="string" use="optional">
+                <annotation>
+                    <documentation>If the player is playing righthanded or lefthanded.</documentation>
+                </annotation>
+            </attribute>
+            <attribute name="role" type="string" use="optional">
+                <annotation>
+                    <documentation>If the player has a named role in the team. For example skip or vice skip.</documentation>
+                </annotation>
+            </attribute>
+        </complexType>
+    </element>
+    
+    <element name="player-stats-curling">
+        <annotation>
+            <documentation>Holds curling-specific stats for certain player.</documentation>
+        </annotation>
+        <complexType>
+            <sequence>
+                <element ref="sportsml:stats-curling-accuracy" minOccurs="0" maxOccurs="unbounded"/>
+            </sequence>
+            <attributeGroup ref="sportsml:globalAttributes"/>
+            <attributeGroup ref="sportsml:coverageAttributes"/>
+        </complexType>
+    </element>
+    
+    <element name="event-actions-curling">
+        <annotation>
+            <documentation>A holder for actions taking place in a curling match.</documentation>
+        </annotation>
+        <complexType>
+            <choice minOccurs="0" maxOccurs="unbounded">
+                <element ref="sportsml:action-curling-shot"/>
+            </choice>
+            <attributeGroup ref="sportsml:globalAttributes"/>
+        </complexType>
+    </element>
+    
+    <element name="action-curling-shot">
+        <annotation>
+            <documentation>Description of one shot, what the assignment was, which player and the outcome.</documentation>
+        </annotation>
+        <complexType>
+            <choice minOccurs="0" maxOccurs="unbounded">
+                <element ref="sportsml:action-curling-miss-reason"/>
+            </choice>
+            <attributeGroup ref="sportsml:globalAttributes"/>
+            <attributeGroup ref="sportsml:eventStateCurling"/>
+            <attribute name="time-used" type="string" use="optional">
+                <annotation>
+                    <documentation>How much time did the team spend on this individual shot.</documentation>
+                </annotation>
+            </attribute>
+            <attribute name="turn" type="sportsml:turnType.Curling" use="optional">
+                <annotation>
+                    <documentation>Was this shot done using inturn or outturn.</documentation>
+                </annotation>
+            </attribute>
+            <attribute name="shot-type" type="sportsml:shotType.Curling" use="optional">
+                <annotation>
+                    <documentation>Which shot-type was called. (Draw, draw round, take, tick etc)</documentation>
+                </annotation>
+            </attribute>
+            <attribute name="stone-speed" type="string" use="optional">
+                <annotation>
+                    <documentation>The stone speed if measured.</documentation>
+                </annotation>
+            </attribute>
+            <attribute name="success" type="sportsml:shotResult.Curling" use="optional">
+                <annotation>
+                    <documentation>The percentage of success of the stone. 0, 25, 50, 75 or 100. 125 for exceptional shots. 150 for exceptional stones winning games.</documentation>
+                </annotation>
+            </attribute>
+            <attribute name="shot-finish" type="string" use="optional">
+                <annotation>
+                    <documentation>DEPRECATED: This attribute is unclear what it is meant to hold. It could mean the position of the stones but this is not very useful since more stones could have been moved by this shot.</documentation>
+                </annotation>
+            </attribute>
+            <attribute name="comment" type="string" use="optional">
+                <annotation>
+                    <documentation>Comments regarding this shot.</documentation>
+                </annotation>
+            </attribute>
+        </complexType>
+    </element>
+    
+    <element name="action-curling-miss-reason">
+        <annotation>
+            <documentation>If a shot was a miss this element can be used to record the reason.</documentation>
+        </annotation>
+        <complexType>
+            <attributeGroup ref="sportsml:globalAttributes"/>
+            <attribute name="type" type="string" use="optional">
+                <annotation>
+                    <documentation>The reason why the stone was a miss. Could be rule-violation by the player, problem with the stone, player touching the stone after release etc.</documentation>
+                </annotation>
+            </attribute>
+        </complexType>
+    </element>
+    
+</schema>

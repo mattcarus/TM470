@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<schema
+	xmlns="http://www.w3.org/2001/XMLSchema"
+	xmlns:sportsml="http://iptc.org/std/SportsML/2008-04-01/"
+	version="2.2"
+	>
+	<simpleType name="winType.Tennis.Vocabulary">
+		<restriction base="string">
+			<enumeration value="forced">
+				<annotation>
+					<documentation>The point was made while the opponent for example advanced towards the net.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="unforced">
+				<annotation>
+					<documentation>The point was made regardless of specific actions by the opponent.</documentation>
+				</annotation>
+			</enumeration>
+		</restriction>
+	</simpleType>
+	
+	<simpleType name="gameResult.Tennis.Vocabulary">
+		<annotation>
+			<documentation>The score of the player or team presently serving, either love, 15, 30, 40, game.</documentation>
+		</annotation>
+		<restriction base="string">
+			<enumeration value="love"/>
+			<enumeration value="15"/>
+			<enumeration value="30"/>
+			<enumeration value="40"/>
+			<enumeration value="game"/>
+			<enumeration value="ad"/>
+			<enumeration value="deuce"/>
+		</restriction>
+	</simpleType>
+	
+	<simpleType name="shotType.Tennis.Vocabulary">
+		<restriction base="string">
+			<enumeration value="crosscourt"/>
+			<enumeration value="drop"/>
+			<enumeration value="lob"/>
+			<enumeration value="slice"/>
+			<enumeration value="smash"/>
+			<enumeration value="volley"/>
+		</restriction>
+	</simpleType>
+		
+</schema>

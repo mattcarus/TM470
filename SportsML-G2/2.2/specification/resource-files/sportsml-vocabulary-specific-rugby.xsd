@@ -1,0 +1,143 @@
+<?xml version="1.0"?>
+<schema
+	xmlns="http://www.w3.org/2001/XMLSchema"
+	xmlns:sportsml="http://iptc.org/std/SportsML/2008-04-01/"
+	version="2.2"
+	>
+	<simpleType name="scoreAttemptType.Rugby.Vocabulary">
+		<restriction base="string">
+			<enumeration value="penalty">
+				<annotation>
+					<documentation>The score attempt is made as a penalty kick.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="drop">
+				<annotation>
+					<documentation>The score attempt is made as a drop kick.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="conversion">
+				<annotation>
+					<documentation>The score attempt is made as a try conversion.</documentation>
+				</annotation>
+			</enumeration>
+		</restriction>
+	</simpleType>
+	<simpleType name="scoreAttemptResult.Rugby.Vocabulary">
+		<restriction base="string">
+			<enumeration value="missed">
+				<annotation>
+					<documentation>The kick fell below or outside the uprights.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="blocked">
+				<annotation>
+					<documentation>The kick was blocked.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="out-of-bounds">
+				<annotation>
+					<documentation>The kick went out of bounds.</documentation>
+				</annotation>
+			</enumeration>
+		</restriction>
+	</simpleType>
+	<simpleType name="penaltyType.Rugby.Vocabulary">
+		<restriction base="string">
+			<enumeration value="offensive"/>
+			<enumeration value="defensive"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="penaltyLevel.Rugby.Vocabulary">
+		<restriction base="string">
+			<enumeration value="yellow-card">
+				<annotation>
+					<documentation>Penalty shown by a yellow card - also known as a caution.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="red-card">
+				<annotation>
+					<documentation>Penalty shown as a red card - also known as an ejection.</documentation>
+				</annotation>
+			</enumeration>
+		</restriction>
+	</simpleType>
+	<simpleType name="foulResult.Rugby.Vocabulary">
+		<restriction base="string">
+			<enumeration value="play-on">
+				<annotation>
+					<documentation>Fouled team has advantage of the ball and is allowed to play on.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="freekick">
+				<annotation>
+					<documentation>Fouled team is awarded a freekick.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="penalty-kick">
+				<annotation>
+					<documentation>The fouled team is awarded a penalty kick.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="penalty-try">
+				<annotation>
+					<documentation>The fouled team is awarded a penalty kick.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="caution">
+				<annotation>
+					<documentation>The player is beeing cautioned. Indicated by a yellow card. Suffered team get a freekick or penalty-shot.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="ejection">
+				<annotation>
+					<documentation>The player is beeing ejected from the game. Shown by a red card. Suffered team get a freekick or penalty shot.</documentation>
+				</annotation>
+			</enumeration>
+		</restriction>
+	</simpleType>
+	<simpleType name="foulName.Rugby.Vocabulary">
+		<restriction base="string">
+			<enumeration value="knock-on"/>
+			<enumeration value="kicking-player"/>
+			<enumeration value="cursing"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="substitutionType.Rugby.Vocabulary">
+		<restriction base="string">
+			<enumeration value="blood">
+				<annotation>
+					<documentation>A temporary replacement in which the player must return to the field within 15 minutes</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="regular">
+				<annotation>
+					<documentation>One of seven allowed permanent player substitutions.</documentation>
+				</annotation>
+			</enumeration>
+		</restriction>
+	</simpleType>
+	<simpleType name="position.Rugby.Vocabulary">
+		<restriction base="string">
+			<enumeration value="loose-forward"/>
+			<enumeration value="prop-loosehead"/>
+			<enumeration value="prop-tighthead"/>
+			<enumeration value="prop"/>
+			<enumeration value="hooker"/>
+			<enumeration value="second-row"/>
+			<enumeration value="lock"/>
+			<enumeration value="flanker-blindside"/>
+			<enumeration value="flanker-openside"/>
+			<enumeration value="number-eight"/>
+			<enumeration value="scrum-half"/>
+			<enumeration value="fly-half"/>
+			<enumeration value="stand-off"/>
+			<enumeration value="inside-center"/>
+			<enumeration value="outside-center"/>
+			<enumeration value="center"/>
+			<enumeration value="left-wing"/>
+			<enumeration value="right-wing"/>
+			<enumeration value="fullback"/>
+		</restriction>
+	</simpleType>
+</schema>

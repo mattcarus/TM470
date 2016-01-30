@@ -1,0 +1,681 @@
+<?xml version="1.0"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+	xmlns:sportsml="http://iptc.org/std/SportsML/2008-04-01/" version="2.2">
+	<simpleType name="statsCoverage.Core.Vocabulary">
+		<restriction base="string">
+			<enumeration value="compact"/>
+			<enumeration value="standard"/>
+			<enumeration value="expanded"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="teamCoverage.Core.Vocabulary">
+		<restriction base="string">
+			<enumeration value="single-team">
+				<annotation>
+					<documentation>Contains only information about a single team.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="multi-team">
+				<annotation>
+					<documentation>Contains information about many or all teams in a
+						league.</documentation>
+				</annotation>
+			</enumeration>
+		</restriction>
+	</simpleType>
+	<simpleType name="dateCoverageType.Core.Vocabulary">
+		<restriction base="string">
+			<enumeration value="period"/>
+			<enumeration value="event"/>
+			<enumeration value="tournament"/>
+			<enumeration value="tournament-pool"/>
+			<enumeration value="tournament-seed"/>
+			<enumeration value="recent-ten-events"/>
+			<enumeration value="hourly"/>
+			<enumeration value="daily"/>
+			<enumeration value="weekly"/>
+			<enumeration value="monthly"/>
+			<enumeration value="preseason"/>
+			<enumeration value="season-exhibition"/>
+			<enumeration value="season-regular">
+				<annotation>
+					<documentation>The default value.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="season-playoffs"/>
+			<enumeration value="season-full"/>
+			<enumeration value="career"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="durationScope.Core.Vocabulary">
+		<restriction base="string">
+			<enumeration value="events-all">
+				<annotation>
+					<documentation>Every event played, including overtime games, the most recent
+						ones, etc. The default option.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="events-overtime"/>
+			<enumeration value="events-shootout"/>
+			<enumeration value="events-most-recent-10">
+				<annotation>
+					<documentation>DEPRECATE: use "recent-ten-events" date coverage type
+						(dateCoverageType).</documentation>
+				</annotation>
+			</enumeration>
+		</restriction>
+	</simpleType>
+	<simpleType name="competitionScope.Core.Vocabulary">
+		<restriction base="string">
+			<enumeration value="events-all">
+				<annotation>
+					<documentation>Every event played, including those played against teams in the
+						same division or conference. The default option.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="division">
+				<annotation>
+					<documentation>Events played within a league's division.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="division-opposing"/>
+			<enumeration value="conference">
+				<annotation>
+					<documentation>Events played within a league's conference.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="conference-opposing"/>
+			<enumeration value="team-opposing">
+				<annotation>
+					<documentation>Events against a specific team.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="player-opposing">
+				<annotation>
+					<documentation>
+						<annotation>
+							<documentation>Events against a specific player.</documentation>
+						</annotation>
+					</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="tournament">
+				<annotation>
+					<documentation>Events from a specific tournament.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="league"/>
+			<enumeration value="top-25"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="alignmentScope.Core.Vocabulary">
+		<annotation>
+			<documentation>Every event played, including those played at home and hope so . The
+				default option.</documentation>
+		</annotation>
+		<restriction base="string">
+			<enumeration value="events-all"/>
+			<enumeration value="events-home"/>
+			<enumeration value="events-away"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="recordMakingScope.Core.Vocabulary">
+		<restriction base="string">
+			<enumeration value="high"/>
+			<enumeration value="low"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="codeType.Core.Vocabulary">
+		<annotation>
+			<documentation>What type of item is being coded.</documentation>
+		</annotation>
+		<restriction base="string">
+			<enumeration value="sport-class"/>
+			<enumeration value="sport-category"/>
+			<enumeration value="sport"/>
+			<enumeration value="sport-competition"/>
+			<enumeration value="league"/>
+			<enumeration value="conference"/>
+			<enumeration value="division"/>
+			<enumeration value="team"/>
+			<enumeration value="special-event"/>
+			<enumeration value="site"/>
+			<enumeration value="article-ref"/>
+			<enumeration value="photo-ref"/>
+			<enumeration value="audio-ref"/>
+			<enumeration value="video-ref"/>
+			<enumeration value="xref-key"/>
+			<enumeration value="slug"/>
+			<enumeration value="slug-category"/>
+			<enumeration value="season">
+				<annotation>
+					<documentation>The year or name of the season</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="season-type">
+				<annotation>
+					<documentation>Which segment of the season: pre-season, post-season, regular,
+						etc.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="publisher">
+				<annotation>
+					<documentation>The source of the data/content.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="distributor">
+				<annotation>
+					<documentation>The source of the data/content.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="priority"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="eventStyle.Core.Vocabulary">
+		<annotation>
+			<documentation>Indicates whether competitors are trying to defeat each other or just
+				outdo one another.</documentation>
+		</annotation>
+		<restriction base="string">
+			<enumeration value="head-to-head"/>
+			<enumeration value="ranked"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="eventStatus.Core.Vocabulary">
+		<annotation>
+			<documentation>pre-event, mid-event, post-event.</documentation>
+		</annotation>
+		<restriction base="string">
+			<enumeration value="pre-event">
+				<annotation>
+					<documentation>Any time before an event begins.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="mid-event">
+				<annotation>
+					<documentation>Any time while an event is in-play.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="post-event">
+				<annotation>
+					<documentation>Any time after an event is finished.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="postponed">
+				<annotation>
+					<documentation>The putting off of an event until a later date, before the event
+						has begun, for whatever reason.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="suspended">
+				<annotation>
+					<documentation>An event is stopped with the intention of resumption at a later
+						date.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="halted">
+				<annotation>
+					<documentation>An event is stopped and not resumed or ended.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="forfeited">
+				<annotation>
+					<documentation>A team declines or is unable to play and loses by default. The
+						opponent is awarded the win.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="rescheduled">
+				<annotation>
+					<documentation>An event is given a new time and date.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="delayed">
+				<annotation>
+					<documentation>An event is held up, for example by inclement weather. Can happen
+						before or during an event.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="canceled">
+				<annotation>
+					<documentation>An event is never played and not re-scheduled.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="intermission">
+				<annotation>
+					<documentation>A planned or scheduled break in play after which play
+						resumes.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="if-necessary">
+				<annotation>
+					<documentation>An event whose commencement is dependant upon the outcome of
+						prior events.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="discarded">
+				<annotation>
+					<documentation>A cancelled event because the event was
+						unnecessary.</documentation>
+				</annotation>
+			</enumeration>
+		</restriction>
+	</simpleType>
+	<simpleType name="eventStatusReason.Core.Vocabulary">
+		<annotation>
+			<documentation>the reason for the event-status</documentation>
+		</annotation>
+		<restriction base="string">
+			<enumeration value="withdrawal">
+				<annotation>
+					<documentation>A forfeited or canceled event because a participant
+						withdrew.</documentation>
+				</annotation>
+			</enumeration>
+		</restriction>
+	</simpleType>
+	<simpleType name="seasonType.Core.Vocabulary">
+		<annotation>
+			<documentation>A subcategory of the season</documentation>
+		</annotation>
+		<restriction base="string">
+			<enumeration value="pre-season">
+				<annotation>
+					<documentation>Events played in an exhibition before the regular phase when
+						standings points are awarded.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="season-regular">
+				<annotation>
+					<documentation>The phase of a league competition when standings points are
+						awarded toward a points-based championship or position in a post-season
+						phase.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="post-season">
+				<annotation>
+					<documentation>A championship phase of a league competition, usually comprosed
+						of elimination rounds until one team has prevailed.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="all-star-game">
+				<annotation>
+					<documentation>Some leagues have an all-star break and game comprised of the
+						best players.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="exhibition">
+				<annotation>
+					<documentation>A game or phase with no standings points awarded.</documentation>
+				</annotation>
+			</enumeration>
+		</restriction>
+	</simpleType>
+	<simpleType name="postponementStatus.Core.Vocabulary">
+		<annotation>
+			<documentation>Either none, weather-delay, or other.</documentation>
+		</annotation>
+		<restriction base="string">
+			<enumeration value="none"/>
+			<enumeration value="weather-delay"/>
+			<enumeration value="other"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="status.Core.Vocabulary">
+		<annotation>
+			<documentation>Whether a player starts playing at the beginning of a sports-event, joins
+				mid-game, or is not available to participate.</documentation>
+		</annotation>
+		<restriction base="string">
+			<enumeration value="starter">
+				<annotation>
+					<documentation>A member of the lineup that enters the field at the commencement
+						of play.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="bench">
+				<annotation>
+					<documentation>Does not enter field at commencement of play, is substituted in
+						or remains on bench.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="scratched">
+				<annotation>
+					<documentation>Does not dress for event, usually for having not earned a slot in
+						the lineup.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="injured">
+				<annotation>
+					<documentation>Unable to play due to injury.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="suspended">
+				<annotation>
+					<documentation>Unable to play due to suspension due to
+						transgression.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="sidelined">
+				<annotation>
+					<documentation>Does not play for other reason.</documentation>
+				</annotation>
+			</enumeration>
+		</restriction>
+	</simpleType>
+	<simpleType name="health.Core.Vocabulary">
+		<annotation>
+			<documentation>An indication of the health of the player.</documentation>
+		</annotation>
+		<restriction base="string">
+			<enumeration value="injured"/>
+			<enumeration value="fine"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="phaseType.Core.Vocabulary">
+		<restriction base="string">
+			<enumeration value="scholastic"/>
+			<enumeration value="college"/>
+			<enumeration value="amateur"/>
+			<enumeration value="professional"/>
+			<enumeration value="semi-professional"/>
+			<enumeration value="former-professional"/>
+			<enumeration value="released"/>
+			<enumeration value="free-agent"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="locationType.Core.Vocabulary">
+		<restriction base="string">
+			<enumeration value="birth">
+				<annotation>
+					<documentation>The place of birth of the athlete.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="hometown">
+				<annotation>
+					<documentation>The location which best describes the place of origin of the
+						athlete. Could be different from place of birth.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="residence">
+				<annotation>
+					<documentation>The current place of residence of the athlete.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="representative">
+				<annotation>
+					<documentation>The place an athlete is representing. Could be different from
+						birth and residence location.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="start-location">
+				<annotation>
+					<documentation>The starting point of the event.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="stage-location">
+				<annotation>
+					<documentation>The location of an intermediate stage of the
+						event.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="end-location">
+				<annotation>
+					<documentation>The end-point of the event.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="training-location">
+				<annotation>
+					<documentation>The place where the athlete trains.</documentation>
+				</annotation>
+			</enumeration>
+		</restriction>
+	</simpleType>
+	<simpleType name="phaseStatus.Core.Vocabulary">
+		<restriction base="string">
+			<enumeration value="active">
+				<annotation>
+					<documentation>Currently active and able to play.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="injured">
+				<annotation>
+					<documentation>Unable to play due to injury.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="disabled-list">
+				<annotation>
+					<documentation>Unable to play due to injury. Deemed long-term.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="try-out">
+				<annotation>
+					<documentation>Not on time, attempting to make the lineup.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="inactive">
+				<annotation>
+					<documentation>Inactive, not playing.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="physically-unable">
+				<annotation>
+					<documentation>Unable to play for physical reason, not necessarily
+						injury.</documentation>
+				</annotation>
+			</enumeration>
+		</restriction>
+	</simpleType>
+	<simpleType name="gender.Core.Vocabulary">
+		<annotation>
+			<documentation>One specific gender or mixed.</documentation>
+		</annotation>
+		<restriction base="string">
+			<enumeration value="male"/>
+			<enumeration value="female"/>
+			<enumeration value="mixed"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="participantCount.Core.Vocabulary">
+		<annotation>
+			<documentation>Number of participants playing on a team or side in the events
+				covered.</documentation>
+		</annotation>
+		<restriction base="string">
+			<enumeration value="individual"/>
+			<enumeration value="doubles"/>
+			<enumeration value="team"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="professionalStatus.Core.Vocabulary">
+		<annotation>
+			<documentation>The professional-status of the events covered.</documentation>
+		</annotation>
+		<restriction base="string">
+			<enumeration value="amateur"/>
+			<enumeration value="professional"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="specialGroup.Core.Vocabulary">
+		<annotation>
+			<documentation>If the events covered are for special groups. Can be school-oriented,
+				age-oriented, or group names, like Firefighters.</documentation>
+		</annotation>
+		<restriction base="string">
+			<enumeration value="college"/>
+			<enumeration value="senior"/>
+			<enumeration value="junior"/>
+			<enumeration value="high-school"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="specialNeeds.Core.Vocabulary">
+		<annotation>
+			<documentation>Events for persons with special-needs.</documentation>
+		</annotation>
+		<restriction base="string">
+			<enumeration value="none"/>
+			<enumeration value="disabled"/>
+			<enumeration value="deaf"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="bodySide.Core.Vocabulary">
+		<annotation>
+			<documentation>General purpose vocabulary for various properties describing the the side
+				with which a player shoots, kicks, catches, bats, etc. Also to describe injury
+				side.</documentation>
+		</annotation>
+		<restriction base="string">
+			<enumeration value="right"/>
+			<enumeration value="left"/>
+			<enumeration value="both"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="siteStyle.Core.Vocabulary">
+		<annotation>
+			<documentation>Whether it is an indoor or outdoor site.</documentation>
+		</annotation>
+		<restriction base="string">
+			<enumeration value="indoor"/>
+			<enumeration value="outdoor"/>
+			<enumeration value="retractable-dome"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="siteSurface.Core.Vocabulary">
+		<annotation>
+			<documentation>Describes the surface upon which events are played.</documentation>
+		</annotation>
+		<restriction base="string">
+			<enumeration value="hard-court"/>
+			<enumeration value="clay"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="weatherPrediction.Core.Vocabulary">
+		<annotation>
+			<documentation>Describes expected weather conditions for event.</documentation>
+		</annotation>
+		<restriction base="string">
+			<enumeration value="rain"/>
+			<enumeration value="sunny"/>
+			<enumeration value="clear"/>
+			<enumeration value="cloudy"/>
+			<enumeration value="windy"/>
+			<enumeration value="windy"/>
+			<enumeration value="mostly-fair"/>
+			<enumeration value="snow"/>
+			<enumeration value="showers"/>
+			<enumeration value="mostly-cloudy,rain"/>
+			<enumeration value="partly-sunny,rain"/>
+			<enumeration value="partly-cloudy,rain"/>
+			<enumeration value="mostly-cloudy,snow"/>
+			<enumeration value="partly-sunny,snow"/>
+			<enumeration value="partly-cloudy,snow"/>
+			<enumeration value="mostly-cloudy,showers"/>
+			<enumeration value="partly-sunny,showers"/>
+			<enumeration value="partly-cloudy,showers"/>
+			<enumeration value="partly-cloudy"/>
+			<enumeration value="partly-sunny"/>
+			<enumeration value="mostly-cloudy"/>
+			<enumeration value="mostly-sunny"/>
+			<enumeration value="mostly-clear"/>
+			<enumeration value="indoor-play"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="scoreUnits.Core.Vocabulary">
+		<annotation>
+			<documentation>Describes how the score and score-opposing is valued.</documentation>
+		</annotation>
+		<restriction base="string">
+			<enumeration value="time-absolute">
+				<annotation>
+					<documentation>Total time to complete competition, not measured in comparison to
+						other competitors</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="time-relative">
+				<annotation>
+					<documentation>Time difference compared (usually) to closest competitor or
+						first-place finalist. First place commonly has absolute
+						value.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="against-par"/>
+			<enumeration value="below-par">
+				<annotation>
+					<documentation>DEPRECATED: use "against-par"</documentation>
+				</annotation>
+			</enumeration>
+		</restriction>
+	</simpleType>
+	<simpleType name="resultEffect.Core.Vocabulary">
+		<restriction base="string">
+			<enumeration value="qualification"/>
+			<enumeration value="promotion"/>
+			<enumeration value="demotion"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="awardType.Core.Vocabulary">
+		<restriction base="string">
+			<enumeration value="medal"/>
+			<enumeration value="trophy"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="statusChangeType.Core.Vocabulary">
+		<restriction base="string">
+			<enumeration value="injury"/>
+			<enumeration value="trade"/>
+			<enumeration value="cut"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="tournamentStageType.Core.Vocabulary">
+		<restriction base="string">
+			<enumeration value="hosted">
+				<annotation>
+					<documentation>For a tournament that holds stages in different locations. Eg.
+						different host cities/countries for PGA, FIS, Diamond League (IAAF) and even
+						Tour de France</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="group">
+				<annotation>
+					<documentation>Groups of competitors vie for placement in the group table in
+						order to qualify for the next stage of competition.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="single-group">
+				<annotation>
+					<documentation>The stage involves only a single group of competitors. For
+						example Italian Serie A where teams vie for placement in the league table.
+						Also, a single group competition in a multi-group stage, such as the World
+						Cup group stage.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="series">
+				<annotation>
+					<documentation>A stage in which two competitors face off in a series of games
+						(eg. best 3 of 5) the winner of which proceeds to the next stage, or wins
+						the tournament.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="single-elimination">
+				<annotation>
+					<documentation>A stage in which two competitors face off in a single match to
+						determine who proceeds to the next stage, or wins the tournament. Eg.
+						elimination stage of World Cup of Soccer or NFL playoffs.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="home-and-home">
+				<annotation>
+					<documentation>A stage in which two competitors face off in a two matches (or
+						legs) at each team's home location. The overall winner proceeds ahead.
+						Usually culiminates in a single-elimination match at a neutral location i.e.
+						UEFA Champions League.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="qualification">
+				<annotation>
+					<documentation>The stage, usually prior to a group or elimination stage, where
+						entities compete to qualify for the later "playoff" stage.</documentation>
+				</annotation>
+			</enumeration>
+		</restriction>
+	</simpleType>
+</schema>

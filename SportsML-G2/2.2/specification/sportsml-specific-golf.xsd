@@ -1,0 +1,627 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+IPTC - International Press Telecommunications Council
+20 Garrick Street, London WC2E 9BT, United Kingdom 
+www.iptc.org
+
+See sportsml.xsd to view Non-Exclusive License Agreement for 
+International Press Telecommunications Council, which
+applies to this specification.
+-->
+
+<!-- New for 2.2
+	added stats-golf under stats-golf-round so all the attributes are availble for each round
+	added in stats-golf attributes for bogeys, double-bogeys, finished-other, putts-per-round and pars. 
+	added in stats-golf attributes for ranking things: eagles-rank, birdies-rank, par-rank. bogey-rank, double-bogey-rank,
+		finished-other-rank, drive-accuracy-rank, distance-rank, putts-per-round-rank, greens-hit-rank and saves-rank
+	added strokes to the attributes under stats-golf-hole and changed the description of score.
+	added an attribute for handicap under player-stats-golf.
+	deprecated the attributes for score-under-par, in favour of the new named score-against-par.
+	added attributes for course-rating and slope-rating under event-metadata-golf
+	added strokes under eventStateGolf and changed documentation for score. Adjusted version number to 2.2.
+-->
+<schema xmlns="http://www.w3.org/2001/XMLSchema" 
+	    xmlns:sportsml="http://iptc.org/std/SportsML/2008-04-01/" 
+	    targetNamespace="http://iptc.org/std/SportsML/2008-04-01/" 
+	    version="2.2">
+	
+	<attributeGroup name="eventStateGolf">
+		<!-- This group is used in event-metadata-golf, action-golf-shot and action-golf-other -->
+		<attribute name="time-elapsed" type="string" use="optional">
+			<annotation>
+				<documentation>The amount of time since the start of the golf game.</documentation>
+			</annotation>
+		</attribute>
+		<attribute name="round" type="string" use="optional">
+			<annotation>
+				<documentation>The round in the tournament.</documentation>
+			</annotation>
+		</attribute>
+		<attribute name="hole" type="string" use="optional">
+			<annotation>
+				<documentation>Generally an integer, 1 through 18. Could be 19, for a playoff hole. But playoff holes are not numberd like that. They are both recorded as what ordinal number of playoff they are and on that numbered hole on the course thay are played on.</documentation>
+			</annotation>
+		</attribute>
+		<attribute name="strokes" type="string" use="optional">
+			<annotation>
+				<documentation>Total number of strokes in this round.</documentation>
+			</annotation>
+		</attribute>
+		<attribute name="score" type="string" use="optional">
+			<annotation>
+				<documentation>Total score this round. The score can be the same as strokes but it can also be some other type of scoring system used in golf.</documentation>
+			</annotation>
+		</attribute>
+		<attribute name="score-under-par" type="string" use="optional">
+			<annotation>
+				<documentation>DEPRECATED: The amount of shots under par the player has.</documentation>
+			</annotation>
+		</attribute>
+		<attribute name="score-against-par" type="string" use="optional">
+			<annotation>
+				<documentation>The score compared to par on the hole. So a score equal par would put a 0 here and a score under par a negative value.</documentation>
+			</annotation>
+		</attribute>
+	</attributeGroup>
+	
+	<element name="event-metadata-golf">
+		<!-- This is used in the group eventMetadataSpecific -->
+		<annotation>
+			<documentation>Holds event metadata specific to golf. | Includes data about the course on which the event is held.</documentation>
+		</annotation>
+		<complexType>
+			<attributeGroup ref="sportsml:globalAttributes"/>
+			<attributeGroup ref="sportsml:eventStateGolf"/>
+			<attribute name="course-yardage" type="string" use="optional">
+				<annotation>
+					<documentation>How long the total course is, in yards.</documentation>
+				</annotation>
+			</attribute>
+			<attribute name="course-par" type="string" use="optional">
+				<annotation>
+					<documentation>What the par value is for the entire 18 holes of the course.</documentation>
+				</annotation>
+			</attribute>
+			<attribute name="course--rating" type="string" use="optional">
+				<annotation>
+					<documentation>A Course Rating is a mark of the USGA representing a number which describes the difficulty of a golf course from a particular set of tees for a scratch (zero handicap) player. Course Ratings are established by an evaluation of the course by members of a committee, usually from your regional golf association. Course Ratings are numbers like 68.5, 71.2, etc. In some golf jurisdictions, course ratings might be called something else, and may be expressed to a tenth or as whole numbers.</documentation>
+				</annotation>
+			</attribute>
+			<attribute name="slope-rating" type="string" use="optional">
+				<annotation>
+					<documentation>A Slope Rating is a mark of the USGA representing an integer number which describes the difficulty of a golf course from a particular set of tees for a bogey (average) golfer. Slope Ratings vary from 55 (very easy) to 155 (very difficult). The Slope Rating of a course which has not officially been rated is 113, the Slope Rating of a course of "average" difficulty.</documentation>
+				</annotation>
+			</attribute>
+		</complexType>
+	</element>
+	
+	<element name="team-metadata-golf">
+		<annotation>
+			<documentation>Holds metadata about a team (foursome perhaps) playing in the match. | Currently only holds the rank of the team.</documentation>
+		</annotation>
+		<complexType>
+			<attributeGroup ref="sportsml:globalAttributes"/>
+			<attribute name="rank" type="string" use="optional">
+				<annotation>
+					<documentation>How this team ranks among the other competing teams.</documentation>
+				</annotation>
+			</attribute>
+		</complexType>
+	</element>
+	
+	<element name="team-stats-golf">
+		<annotation>
+			<documentation>Holds statistics particular to a team of golf players. | Reserved for future use.</documentation>
+		</annotation>
+		<complexType>
+			<sequence>
+				<element ref="sportsml:stats-golf" minOccurs="0"/>
+				<element ref="sportsml:stats-golf-round" minOccurs="0" maxOccurs="unbounded"/>
+			</sequence>
+			<attributeGroup ref="sportsml:globalAttributes"/>
+			<attributeGroup ref="sportsml:coverageAttributes"/>
+		</complexType>
+	</element>
+
+	<element name="player-metadata-golf">
+		<annotation>
+			<documentation>Holds metadata about a golf player. | Currently only holds the rank of the player.</documentation>
+		</annotation>
+		<complexType>
+			<attributeGroup ref="sportsml:globalAttributes"/>
+			<attribute name="rank" type="string" use="optional">
+				<annotation>
+					<documentation>How this player ranks among the other competing players.</documentation>
+				</annotation>
+			</attribute>
+		</complexType>
+	</element>
+
+	<element name="player-stats-golf">
+		<annotation>
+			<documentation>Holds statistics particular to the player. | Includes performance statistics during the timespan described in date-coverage-scope attributes.</documentation>
+		</annotation>
+		<complexType>
+			<sequence>
+				<element ref="sportsml:stats-golf" minOccurs="0"/>
+				<element ref="sportsml:stats-golf-round" minOccurs="0" maxOccurs="unbounded"/>
+			</sequence>
+			<attributeGroup ref="sportsml:globalAttributes"/>
+			<attributeGroup ref="sportsml:coverageAttributes"/>
+			<attribute name="handicap" type="string" use="optional">
+				<annotation>
+					<documentation>The handicap-value of this player. This will normally not be used in professional tournaments.</documentation>
+				</annotation>
+			</attribute>
+		</complexType>
+	</element>
+
+	<element name="stats-golf">
+		<!-- This group is used in team-stats-golf and player-stats-golf -->
+		<complexType>
+			<attributeGroup ref="sportsml:globalAttributes"/>
+			<attributeGroup ref="sportsml:coverageAttributes"/>
+
+			<attribute name="rounds" type="string" use="optional">
+				<annotation>
+					<documentation>How many rounds the player or team has completed in this particular tournament.</documentation>
+				</annotation>
+			</attribute>
+			<attribute name="average" type="string" use="optional">
+				<annotation>
+					<documentation>Average score of the player or team. Number of shots devided by number of holes??</documentation>
+				</annotation>
+			</attribute>
+			<attribute name="strokes" type="string" use="optional">
+				<annotation>
+					<documentation>The number of strokes taken by the player or team.</documentation>
+				</annotation>
+			</attribute>
+			<attribute name="distance" type="string" use="optional">
+				<annotation>
+					<documentation>The longest distance the player shot.</documentation>
+				</annotation>
+			</attribute>
+			<attribute name="distance-rank" type="string" use="optional">
+				<annotation>
+					<documentation>The rank in the round or tournament for the player when comparing the longest distance shot.</documentation>
+				</annotation>
+			</attribute>
+			<attribute name="drives" type="string" use="optional">
+				<annotation>
+					<documentation>The number of drives made by the player.</documentation>
+				</annotation>
+			</attribute>
+			<attribute name="total-birdies" type="string" use="optional">
+				<annotation>
+					<documentation>DEPRECATE: Total number of holes completed at one stroke below par.</documentation>
+				</annotation>
+			</attribute>
+			<attribute name="total-eagles" type="string" use="optional">
+				<annotation>
+					<documentation>DEPRECATE: Total number of holes completed at two strokes below par.</documentation>
+				</annotation>
+			</attribute>
+			<attribute name="total-rounds" type="string" use="optional">
+				<annotation>
+					<documentation>Total number of rounds played during the current tournament.</documentation><!-- Compare to rounds above -->
+				</annotation>
+			</attribute>
+			<attribute name="total-strokes" type="string" use="optional"><!-- Compare to strokes above -->
+				<annotation>
+					<documentation>Total number of strokes (or swings) (or shots) made.</documentation>
+				</annotation>
+			</attribute>
+			<attribute name="total-holes" type="string" use="optional"><!-- Compare to holes-played -->
+				<annotation>
+					<documentation>Total number of holes played.</documentation>
+				</annotation>
+			</attribute>
+			<attribute name="total-putts" type="string" use="optional">
+				<annotation>
+					<documentation>Total number of putts attempted.</documentation>
+				</annotation>
+			</attribute>
+			<attribute name="total-points" type="string" use="optional">
+				<annotation>
+					<documentation>Total score of the player. Depending on the system used in the tournament the score could be something other than the actual number of strokes.</documentation>
+				</annotation>
+			</attribute>
+			<attribute name="total-driving" type="string" use="optional">
+				<annotation>
+					<documentation>Total driving distance.</documentation>
+				</annotation>
+			</attribute>
+			<attribute name="total-par-or-less" type="string" use="optional">
+				<annotation>
+					<documentation>Total number of holes played by the player at par or less than par.</documentation>
+				</annotation>
+			</attribute>
+			<attribute name="birdies" type="string" use="optional">
+				<annotation>
+					<documentation>Number of birdies.</documentation>
+				</annotation>
+			</attribute>
+			<attribute name="birdies-rank" type="string" use="optional">
+				<annotation>
+					<documentation>How the player ranks in the round or tournament regarding birdies.</documentation>
+				</annotation>
+			</attribute>
+			<attribute name="eagles" type="string" use="optional">
+				<annotation>
+					<documentation>Number of eagles.</documentation>
+				</annotation>
+			</attribute>
+			<attribute name="eagles-rank" type="string" use="optional">
+				<annotation>
+					<documentation>How the player ranks in the round or tournament regarding eagles.</documentation>
+				</annotation>
+			</attribute>
+			<attribute name="saves" type="string" use="optional">
+				<annotation>
+					<documentation>Number of saves when the ball landed in a sand bunker.</documentation>
+				</annotation>
+			</attribute>
+			<attribute name="saves-rank" type="string" use="optional">
+				<annotation>
+					<documentation>How the player ranks in the round or tournament regarding saves from the bunker.</documentation>
+				</annotation>
+			</attribute>
+			<attribute name="bunkers" type="string" use="optional">
+				<annotation>
+					<documentation>Number of bunker shots the player took.</documentation>
+				</annotation>
+			</attribute>
+			<attribute name="eagle-per-holes-frequency" type="string" use="optional">
+				<annotation>
+					<documentation>Frequency of hitting eagles.</documentation><!-- This would be a decimal number between 0 and 1?? But there is no attribute for birdies-per-holes-frequency? -->
+				</annotation>
+			</attribute>
+			<attribute name="percentage" type="string" use="optional">
+				<annotation>
+					<documentation>Percentage.</documentation><!-- Percentage of what?? Unclear! -->
+				</annotation>
+			</attribute>
+			<attribute name="long-drive" type="string" use="optional">
+				<annotation>
+					<documentation>Long drive.</documentation><!-- Probably the longest drive shot but unclear. And how does this compare to the attribute distance-->
+				</annotation>
+			</attribute>
+			<attribute name="greens-hit" type="string" use="optional">
+				<annotation>
+					<documentation>This is  a very special golf term. To reach a green in regulation (GIR) the player must place the ball on the green with two strokes less than the par of the course. The attribute holds the number of times the player or team has achieved this in the timeframe the stats cover.</documentation>
+				</annotation>
+			</attribute>
+			<attribute name="greens-hit-rank" type="string" use="optional">
+				<annotation>
+					<documentation>How the player ranks in the tournament or round regarding greens hit in regulation.</documentation>
+				</annotation>
+			</attribute>
+			<attribute name="greens-in-regulation-missed" type="string" use="optional">
+				<annotation>
+					<documentation>Number of greens missed during regulation play.</documentation>
+				</annotation>
+			</attribute>
+			<attribute name="greens-in-regulation-putting" type="string" use="optional">
+				<annotation>
+					<documentation>The average number of puts needed to finish holes after hitting the green in regulation (GIR).</documentation>
+				</annotation>
+			</attribute>
+			<attribute name="greens-in-regulation-rank" type="string" use="optional">
+				<annotation>
+					<documentation>Rank of player in terms of the greens-in-regulation putting.</documentation>
+				</annotation>
+			</attribute>
+			<attribute name="fairways-hit" type="string" use="optional">
+				<annotation>
+					<documentation>Number of fairways hit.</documentation>
+				</annotation>
+			</attribute>
+			<attribute name="fairways-possible" type="string" use="optional">
+				<annotation>
+					<documentation>Maximum number of fairways it was possible to hit.</documentation>
+				</annotation>
+			</attribute>
+			<attribute name="putts-per-round" type="string" use="optional">
+				<annotation>
+					<documentation>The average number of putts needed per complete round.</documentation>
+				</annotation>
+			</attribute>
+			<attribute name="putts-per-round-rank" type="string" use="optional">
+				<annotation>
+					<documentation>How the player ranks when comparing the average putts-per-round.</documentation>
+				</annotation>
+			</attribute>
+			<attribute name="holes-played" type="string" use="optional">
+				<annotation>
+					<documentation>Number of holes finished.</documentation>
+				</annotation>
+			</attribute>
+			<attribute name="holes-under-par" type="string" use="optional">
+				<annotation>
+					<documentation>Number of holes finished under par.</documentation>
+				</annotation>
+			</attribute>
+			<attribute name="scoring-adjustment" type="string" use="optional">
+				<annotation>
+					<documentation>Scoring adjustment.</documentation>
+				</annotation>
+			</attribute>
+			<attribute name="finishes-top-10" type="string" use="optional">
+				<annotation>
+					<documentation>Number of finishes the player had in the top ten.</documentation>
+				</annotation>
+			</attribute>
+			<attribute name="finishes-first-place" type="string" use="optional">
+				<annotation>
+					<documentation>Number of first-place finishes the player had.</documentation>
+				</annotation>
+			</attribute>
+			<attribute name="finishes-second-place" type="string" use="optional">
+				<annotation>
+					<documentation>Number of second-place finishes the player had.</documentation>
+				</annotation>
+			</attribute>
+			<attribute name="performance-par-3" type="string" use="optional">
+				<annotation>
+					<documentation>The performance of the player on par-3 holes.</documentation>
+				</annotation>
+			</attribute>
+			<attribute name="performance-par-4" type="string" use="optional">
+				<annotation>
+					<documentation>The performance of the player on par-4 holes.</documentation>
+				</annotation>
+			</attribute>
+			<attribute name="performance-par-5" type="string" use="optional">
+				<annotation>
+					<documentation>The performance of the player on par-5 holes.</documentation>
+				</annotation>
+			</attribute>
+			<attribute name="money" type="string" use="optional">
+				<annotation>
+					<documentation>Amount of money earned by the player.</documentation>
+				</annotation>
+			</attribute>
+			<attribute name="money-value" type="string" use="optional">
+				<annotation>
+					<documentation>Money value.</documentation>
+				</annotation>
+			</attribute>
+			<attribute name="points" type="string" use="optional">
+				<annotation>
+					<documentation>Number of points.</documentation>
+				</annotation>
+			</attribute>
+			<attribute name="points-lost" type="string" use="optional">
+				<annotation>
+					<documentation>Number of points lost.</documentation>
+				</annotation>
+			</attribute>
+			<attribute name="points-gained" type="string" use="optional">
+				<annotation>
+					<documentation>Number of points gained.</documentation>
+				</annotation>
+			</attribute>
+			<attribute name="drive-accuracy" type="string" use="optional">
+				<annotation>
+					<documentation>A percentage of how good the drives from the player or team has been in the given frame the stats cover.</documentation>
+				</annotation>
+			</attribute>
+			<attribute name="drive-accuracy-rank" type="string" use="optional">
+				<annotation>
+					<documentation>How the player ranks when comparing drive-accuracy.</documentation>
+				</annotation>
+			</attribute>
+			<attribute name="rounds-under-par" type="string" use="optional">
+				<annotation>
+					<documentation>The number of rounds the player has completed a course under par.</documentation>
+				</annotation>
+			</attribute>
+			<attribute name="bogeys" type="string" use="optional">
+				<annotation>
+					<documentation>The number of holes finished one above par for that hole.</documentation>
+				</annotation>
+			</attribute>
+			<attribute name="bogeys-rank" type="string" use="optional">
+				<annotation>
+					<documentation>How the player ranks when comparing bogeys.</documentation>
+				</annotation>
+			</attribute>
+			<attribute name="double-bogeys" type="string" use="optional">
+				<annotation>
+					<documentation>The number of holes finished two above par for that hole.</documentation>
+				</annotation>
+			</attribute>
+			<attribute name="double-bogeys-rank" type="string" use="optional">
+				<annotation>
+					<documentation>How the player ranks when comparing double-bogeys.</documentation>
+				</annotation>
+			</attribute>
+			<attribute name="finish-other" type="string" use="optional">
+				<annotation>
+					<documentation>The number of holes finished with either more than two under par or two over par.</documentation>
+				</annotation>
+			</attribute>
+			<attribute name="finish-other-rank" type="string" use="optional">
+				<annotation>
+					<documentation>How the player ranks when comparing finish-other.</documentation>
+				</annotation>
+			</attribute>
+			<attribute name="pars" type="string" use="optional">
+				<annotation>
+					<documentation>The number of holes finished on par.</documentation>
+				</annotation>
+			</attribute>
+			<attribute name="pars-rank" type="string" use="optional">
+				<annotation>
+					<documentation>How the player ranks when comparing pars.</documentation>
+				</annotation>
+			</attribute>
+		</complexType>
+	</element>
+
+	<element name="stats-golf-round">
+		<!-- Used in team-stats-golf and player-stats-golf -->
+		<annotation>
+			<documentation>Statistics pertinent to a round within a tournament. | Allows for hole-by-hole breakdowns.</documentation>
+		</annotation>
+		<complexType>
+			<sequence>
+				<element ref="sportsml:stats-golf" minOccurs="0" maxOccurs="1"/>
+				<element ref="sportsml:stats-golf-hole" minOccurs="0" maxOccurs="unbounded"/>
+                
+			</sequence>
+			<attributeGroup ref="sportsml:globalAttributes"/>
+			<attributeGroup ref="sportsml:coverageAttributes"/>
+			<attribute name="round-number" type="string" use="optional">
+				<annotation>
+					<documentation>The number of the round whose stats are being reported.</documentation>
+				</annotation>
+			</attribute>
+			<attribute name="strokes" type="string" use="optional">
+				<annotation>
+					<documentation>Total number of strokes in this round.</documentation>
+				</annotation>
+			</attribute>
+			<attribute name="score" type="string" use="optional">
+				<annotation>
+					<documentation>Total score this round. The score can be the same as strokes but it can also be some other type of scoring system used in golf.</documentation>
+				</annotation>
+			</attribute>
+			<attribute name="score-against-par" type="string" use="optional">
+				<annotation>
+					<documentation>The score compared to par on the hole. So a score equal par would put a 0 here and a score under par a negative value.</documentation>
+				</annotation>
+			</attribute>
+		</complexType>
+	</element>
+
+	<element name="stats-golf-hole">
+		<annotation>
+			<documentation>Statistics pertinent to a particular hole within a golf round. | Includes what score was recorded at that hole, and the par value of the hole.</documentation>
+		</annotation>
+		<complexType>
+			<attributeGroup ref="sportsml:globalAttributes"/>
+			<attributeGroup ref="sportsml:coverageAttributes"/>
+			<attribute name="hole-type" type="sportsml:holeType.Golf" use="optional">
+				<annotation>
+					<documentation>The type of hole played.</documentation>
+				</annotation>
+			</attribute>
+			<attribute name="hole" type="string" use="optional">
+				<annotation>
+					<documentation>A number, generally from 1 to 18. Alternately, the keyword finished.</documentation>
+				</annotation>
+			</attribute>
+			<attribute name="par" type="string" use="optional">
+				<annotation>
+					<documentation>The par-value for the hole. Number of strokes needed to reach par.</documentation>
+				</annotation>
+			</attribute>
+			<attribute name="strokes" type="string" use="optional">
+				<annotation>
+					<documentation>The number of shots it actually took to sink the ball into the hole.</documentation>
+				</annotation>
+			</attribute>
+			<attribute name="score-against-par" type="string" use="optional">
+				<annotation>
+					<documentation>The score compared to par on the hole. So a score equal par would put a 0 here and a score under par a negative value.</documentation>
+				</annotation>
+			</attribute>
+			<attribute name="score-under-par" type="string" use="optional">
+				<annotation>
+					<documentation>DEPRECATED: The number of shots below par that were scored.</documentation>
+				</annotation>
+			</attribute>
+			<attribute name="score" type="string" use="optional">
+				<annotation>
+					<documentation>Total score this hole. The score can be the same as strokes but it can also be some other type of scoring system used in golf.</documentation>
+				</annotation>
+			</attribute>
+		</complexType>
+	</element>
+	
+	<element name="tournament-metadata-golf">
+		<annotation>
+			<documentation>Holds metadata about a golf tournament. | Currently only holds the rank of the team. ???</documentation>
+		</annotation>
+		<complexType>
+			<attributeGroup ref="sportsml:globalAttributes"/>
+		</complexType>
+	</element>
+	
+	<element name="tournament-division-metadata-golf">
+		<annotation>
+			<documentation>Metadata about a particular division within a golf tournament. | Includes information about the course as a whole.</documentation>
+		</annotation>
+		<complexType>
+			<attributeGroup ref="sportsml:globalAttributes"/>
+			<attribute name="course-yardage" type="string" use="optional">
+				<annotation>
+					<documentation>How many yards the course is, measured from tees to holes.</documentation>
+				</annotation>
+			</attribute>
+			<attribute name="course-par" type="string" use="optional">
+				<annotation>
+					<documentation>The total par value of all holes.</documentation>
+				</annotation>
+			</attribute>
+		</complexType>
+	</element>
+	
+	<element name="event-actions-golf">
+		<annotation>
+			<documentation>A holder for actions specific to golf. | Currently holds a golf shot, and a generic golf action element.</documentation>
+		</annotation>
+		<complexType>
+			<choice minOccurs="0" maxOccurs="unbounded">
+				<element ref="sportsml:action-golf-shot"/>
+				<element ref="sportsml:action-golf-other"/>
+			</choice>
+			<attributeGroup ref="sportsml:globalAttributes"/>
+		</complexType>
+	</element>
+	
+	<element name="action-golf-shot">
+		<annotation>
+			<documentation>A swing of the club at the ball resulting in the ball moving. | A shot moves progressively moves the ball from the tee towards the hole.</documentation>
+		</annotation>
+		<complexType>
+			<attributeGroup ref="sportsml:globalAttributes"/>
+			<attributeGroup ref="sportsml:eventStateGolf"/>
+			<attribute name="player-idref" type="IDREF" use="optional"/>
+			<attribute name="club" type="string" use="optional"/>
+			<attribute name="shot-type" type="string" use="optional"/>
+			<attribute name="shot-distance" type="string" use="optional"/>
+			<attribute name="start-distance" type="string" use="optional"/>
+			<attribute name="end-distance" type="string" use="optional"/>
+			<attribute name="landing" type="string" use="optional"/>
+		</complexType>
+	</element>
+	
+	<element name="action-golf-other">
+		<annotation>
+			<documentation>A custom action. | For use when none of the pre-build actions apply.</documentation>
+		</annotation>
+		<complexType>
+			<attributeGroup ref="sportsml:globalAttributes"/>
+			<attributeGroup ref="sportsml:eventStateGolf"/>
+			<attribute name="action-source" type="string" use="optional">
+				<annotation>
+					<documentation>The name of the controlled-vocabulary for the action-type attribute.</documentation>
+				</annotation>
+			</attribute>
+			<attribute name="action-type" type="string" use="optional">
+				<annotation>
+					<documentation>A selection from a controlled-vocabulary list maintained by the publisher.</documentation>
+				</annotation>
+			</attribute>
+			<attribute name="comment" type="string" use="optional">
+				<annotation>
+					<documentation>Textual comment about the action.</documentation>
+				</annotation>
+			</attribute>
+		</complexType>
+	</element>
+	
+</schema>

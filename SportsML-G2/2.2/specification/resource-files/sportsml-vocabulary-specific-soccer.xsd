@@ -1,0 +1,404 @@
+<?xml version="1.0"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+	xmlns:sportsml="http://iptc.org/std/SportsML/2008-04-01/" version="2.2">
+	<simpleType name="scoreAttemptType.Soccer.Vocabulary">
+		<restriction base="string">
+			<enumeration value="regular">
+				<annotation>
+					<documentation>The score attempt is made during regular play.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="penalty">
+				<annotation>
+					<documentation>The score attempt is made as a penalty shot.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="freekick">
+				<annotation>
+					<documentation>The score attempt is made as a free kick.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="corner-kick">
+				<annotation>
+					<documentation>The score attempt is made as a kick from the
+						corner.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="empty-net"> 
+				<annotation>
+					<documentation>DEPRECATED: The score attempt is made when there is no goal-keeper in
+						place. Used in Ice Hockey. Mostly when the team has pulled the goal-keeper from the ice.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="open-goal"> 
+				<annotation>
+					<documentation>The score attempt is made when there is no goal-keeper in place, but still on the field.</documentation>
+				</annotation>
+			</enumeration>
+			
+			<enumeration value="own-goal">
+				<annotation>
+					<documentation>The score attempt is made towards the own goal.</documentation>
+				</annotation>
+			</enumeration>
+		</restriction>
+	</simpleType>
+	<simpleType name="scoreAttemptMethod.Soccer.Vocabulary">
+		<restriction base="string">
+			<enumeration value="head"/>
+			<enumeration value="right-foot">
+				<annotation>
+					<documentation>DEPRECATE: Use Foot + score-attempt-side instead.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="left-foot">
+				<annotation>
+					<documentation>DEPRECATE: Use foot + score-attempt-side instead.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="bicycle-kick"/>
+			<enumeration value="lob" />
+			<enumeration value="chip" />
+			<enumeration value="foot"/>
+			<enumeration value="chest"/>
+			<enumeration value="knee"/>
+			<enumeration value="thigh"/>
+			<enumeration value="back"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="scoreAttemptResult.Soccer.Vocabulary">
+		<restriction base="string">
+			<enumeration value="missed">
+				<annotation>
+					<documentation>The ball missed the goal completely.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="blocked">
+				<annotation>
+					<documentation>A non-goalkeeper diverted the shot from reaching the
+						goal.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="saved">
+				<annotation>
+					<documentation>The goalie has stopped the shot.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="off-post">
+				<annotation>
+					<documentation>The side framework of the goal blocked the
+						shot.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="off-bar">
+				<annotation>
+					<documentation>The top framework of the goal blocked the
+						shot.</documentation>
+				</annotation>
+			</enumeration>
+		</restriction>
+	</simpleType>
+	<simpleType name="penaltySide.Soccer.Vocabulary">
+		<restriction base="string">
+			<enumeration value="offensive"/>
+			<enumeration value="defensive"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="penaltyLevel.Soccer.Vocabulary">
+		<restriction base="string">
+			<enumeration value="yellow-card">
+				<annotation>
+					<documentation>Foul shown by a yellow card - also known as a caution.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="yellow-red-card">
+				<annotation>
+					<documentation>Foul shown as a second yellow card then followed by a red card - also known as an ejection.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="red-card">
+				<annotation>
+					<documentation>Foul shown as a red card - also known as an ejection.</documentation>
+				</annotation>
+			</enumeration>
+		</restriction>
+	</simpleType>
+	<simpleType name="foulResult.Soccer.Vocabulary">
+		<annotation>
+			<documentation>DEPRECATED: Use penaltyResult instead.</documentation>
+		</annotation>
+		<restriction base="string">
+			<enumeration value="play-on">
+				<annotation>
+					<documentation>Fouled team has advantage of the ball and is allowed to play
+						on.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="freekick">
+				<annotation>
+					<documentation>Fouled team is awarded a freekick.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="indirect-freekick">
+				<annotation>
+					<documentation>Fouled team is awarded a freekick.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="direct-freekick">
+				<annotation>
+					<documentation>Fouled team is awarded a freekick.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="penalty-shot">
+				<annotation>
+					<documentation>The foul occured in the penalty-shot area so the fouled team is
+						awarded a penalty-shot.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="caution">
+				<annotation>
+					<documentation>The player is beeing cautioned. Indicated by a yellow card.
+						Suffered team get a freekick or penalty-shot.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="ejection">
+				<annotation>
+					<documentation>The player is beeing ejected from the game. Shown by a red card.
+						Suffered team get a freekick or penalty shot.</documentation>
+				</annotation>
+			</enumeration>
+		</restriction>
+	</simpleType>
+	<simpleType name="penaltyResult.Soccer.Vocabulary">
+		<restriction base="string">
+			<enumeration value="play-on">
+				<annotation>
+					<documentation>Fouled team has advantage of the ball and is allowed to play on.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="freekick">
+				<annotation>
+					<documentation>Fouled team is awarded a freekick.</documentation>
+				</annotation>
+			</enumeration>
+			
+			<enumeration value="indirect-freekick">
+				<annotation>
+					<documentation>Fouled team is awarded a freekick.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="direct-freekick">
+				<annotation>
+					<documentation>Fouled team is awarded a freekick.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="penalty-shot">
+				<annotation>
+					<documentation>The foul occured in the penalty-shot area so the fouled team is
+						awarded a penalty-shot.</documentation>
+				</annotation>
+			</enumeration>
+		</restriction>
+	</simpleType>
+	<simpleType name="penaltyType.Soccer.Vocabulary">
+		<annotation>
+			<documentation>Describes the type of penalty/foul was commited.</documentation>
+		</annotation>
+		<restriction base="string">
+			<enumeration value="serious-foul-play">
+			<annotation>
+				<documentation>The player has committed a serious foul play. | 
+					This leads to a player being sent of the field (red card).</documentation>
+			</annotation>			
+			</enumeration>
+			<enumeration value="violent-conduct">
+				<annotation>
+					<documentation>The player has committed a violent conduct. | 
+						This leads to a player being sent off the field (red card).</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="spitting"> 
+				<annotation>
+					<documentation>The player has spitted at an opponent or any other person. |
+						This leads to a player being sent off the field (red card).</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="offensive-language">
+				<annotation>
+					<documentation>The player has used offensive, insulting or abusive language. | 
+						This leads to a player being sent off the field (red card).</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="offensive-gestures">
+				<annotation>
+					<documentation>The player has used offensive, insulting or abusive gestures. | 
+						This leads to a player being sent off the field (red card).</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="professional-foul"> 
+				<annotation>
+					<documentation>When a player denies another player an obvious goalscoring opportunity by foul. | 
+						This action leads to the player being sent off the field.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="unsporting-behaviour">
+				<annotation>
+					<documentation>The player has been doing unsporting behaviour. | 
+						This leads to a player being given a caution (yellow card).</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="delaying-restart">
+				<annotation>
+					<documentation>The player has delayed the restart of play. | 
+						This leads to a player being given a caution (yellow card).</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="illegal-reentry">
+				<annotation>
+					<documentation>The player re-entered the ﬁeld of play without the referee’s permission. | 
+						This leads to a player being given a caution (yellow card).</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="illegal-entry">
+				<annotation>
+					<documentation>The player entered the ﬁeld of play without the referee’s permission. | 
+						This leads to a player being given a caution (yellow card).</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="required-distance-foul">
+				<annotation>
+					<documentation>The played has failed to respect the required distance when play is restarted 
+						with a corner kick, free kick or throw-in. | 
+						This leads to a player being given a caution (yellow card).</documentation>
+				</annotation>
+			</enumeration>	
+			<enumeration value="illegal-exit">
+				<annotation>
+					<documentation>The player has deliberately left the field of play without the referee’s permission. | 
+						This leads to a player being given a caution (yellow card).</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="hand-ball"/>
+			<enumeration value="tackle"/>
+			<enumeration value="offensive">
+			<annotation>
+				<documentation>Deprecated: use new penaltySide vocab.</documentation>
+			</annotation>
+			</enumeration>
+			<enumeration value="defensive">
+			<annotation>
+				<documentation>Deprecated: use new penaltySide vocab.</documentation>
+			</annotation>
+			</enumeration>
+		</restriction>
+	</simpleType>
+	<simpleType name="foulName.Soccer.Vocabulary">
+		<annotation>
+			<documentation>DEPRECATED: This attribute has been depreaated in favor or a redefined penaltyType.</documentation>
+		</annotation>
+		<restriction base="string">
+			<enumeration value="hand-ball"/>
+			<enumeration value="kicking-player"/>
+			<enumeration value="cursing"/>
+			<enumeration value="tackle"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="position.Soccer.Vocabulary">
+		<restriction base="string">
+			<enumeration value="right-fullback"/>
+			<enumeration value="left-fullback"/>
+			<enumeration value="sweeper"/>
+			<enumeration value="stopper">
+				<annotation>
+					<documentation>DEPRECATED: Use central-defender instead.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="defenseman">
+				<annotation>
+					<documentation>DEPRECATED: Use defender instead</documentation>
+				</annotation>
+			</enumeration> 
+			<enumeration value="left-mid-fielder">
+				<annotation>
+					<documentation>DEPRECATED: Use left-midfielder instead</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="right-mid-fielder">
+				<annotation>
+					<documentation>DEPRECATED: Use right-midfielder instead</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="center-mid-fielders">
+				<annotation>
+					<documentation>DEPRECATED: Use center-midfielder instead</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="mid-fielder">
+				<annotation>
+					<documentation>DEPRECATED: Use midfielder instead</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="defender"/>
+			<enumeration value="central-defender"/>
+			<enumeration value="right-midfielder" />
+			<enumeration value="left-midfielder" />
+			<enumeration value="center-midfielder"/>
+			<enumeration value="midfielder"/>
+			<enumeration value="attacking-midfielder"/>
+			<enumeration value="defensive-midfielder"/>
+			<enumeration value="half-backs"/>
+			<enumeration value="right-wing"/>
+			<enumeration value="left-wing"/>
+			<enumeration value="center-forward"/>
+			<enumeration value="forward"/> 
+			<enumeration value="striker"/>
+			<enumeration value="goalkeeper"/>
+			<enumeration value="coach"/>
+			<enumeration value="assistant-coach"/>
+			<enumeration value="referee"/>
+			<enumeration value="assistant-referee"/>
+			<enumeration value="goalie">
+				<annotation>
+					<documentation>DEPRECATED: Use goalkeeper instead</documentation>
+				</annotation>
+			</enumeration>
+		</restriction>
+	</simpleType>
+	<simpleType name="playType.Soccer.Vocabulary">
+		<restriction base="string">
+			<enumeration value="shot"/>
+			<enumeration value="offside"/>
+			<enumeration value="foul"/>
+			<enumeration value="corner"/>
+			<enumeration value="throw-in"/>
+			<enumeration value="pass"/>
+			<enumeration value="penalty"/>
+			<enumeration value="timeout" />
+			<enumeration value="cross" />
+		</restriction>
+	</simpleType>
+	<simpleType name="participantRole.Soccer.Vocabulary">
+		<restriction base="string">
+			<enumeration value="on-field"/>
+			<enumeration value="scorer"/>
+			<enumeration value="assist"/>
+			<enumeration value="shooter"/>
+			<enumeration value="blocker"/>
+			<enumeration value="penalty-committed-by"/>
+			<enumeration value="penalty-committed-against"/>
+			<enumeration value="giveaway"/>
+			<enumeration value="takeaway"/>
+			<enumeration value="thrower"/>
+			<enumeration value="corner-kicker"/>
+			<enumeration value="offside"/>
+			<enumeration value="free-kicker"/>
+			<enumeration value="penalty-kicker"/>
+			<enumeration value="goalkeeper"/>
+			<enumeration value="goalie">
+				<annotation>
+					<documentation>DEPRECATED: Use goalkeeper instead</documentation>
+				</annotation>
+			</enumeration>	
+		</restriction>
+	</simpleType>
+</schema>

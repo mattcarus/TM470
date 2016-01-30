@@ -1,0 +1,545 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+IPTC - International Press Telecommunications Council
+20 Garrick Street, London WC2E 9BT, United Kingdom
+www.iptc.org
+
+See sportsml.xsd to view Non-Exclusive License Agreement for 
+International Press Telecommunications Council, which
+applies to this specification.
+
+	
+		
+	New in 2.2:
+		stats-tennis-set and stats-tennis-game
+			added statsTennis, stats-tennis-service and stats-tennis-return
+			added attribute duration
+		player-stats-tennis
+			added attribute group statsTennis
+		stats-tennis-service
+			added attribute first-serve-average-speed
+			added attribute second-serve-average-speed
+			added attribute speed-units
+		stats-tennis-return
+			added attribute receive-points-won
+			added attribute receive-points-won-pct
+		event-metadata-tennis
+			added attribute number-of-sets
+		action-tennis-point
+			added attribute shot-type
+			added attribute comment
+		added vocabulary gameResult (love, 15, 30, 40, game, ad, deuce)
+		ERRATUM: removed element action-tennis-volley from event-actions-tennis
+		ERRATUM: removed statsTennis from event-actions-tennis
+		Deprecated matches-played attribute of stats-tennis-service and stats-tennis-return
+		
+
+-->
+<schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:sportsml="http://iptc.org/std/SportsML/2008-04-01/" targetNamespace="http://iptc.org/std/SportsML/2008-04-01/" version="2.2">
+    <annotation>
+        <documentation>Tennis scoring: A game is a subpart of a set and a tennis match is played in best of 3 or 5 sets. A set is played within matches and you need 6 games to win the set. Sets are won by two games unless games are tied 6-6, in which case a tie-breaker ensues with the set won 7-6. The tie-break is counted point by point and is won at 7 by a two-point margin. Play will continue past 7 until that margin is achieved. In games the count proceeds from "love" (0) to 15, 30 and 40, after which the game must be won. If it is not 40-40, the player winning the next point has an "advantage" and if winning the next point too it means winning the game. Otherwise it is back to 40-40 and a continued play for advantage followed by a second winning point to win the game. A game won off an opponent's serve is called a break.</documentation>
+    </annotation>
+    <annotation>
+        <documentation>Summary of statistcs used for tennis.</documentation>
+    </annotation>
+    <attributeGroup name="statsTennis">
+        <attribute name="net-points-won" type="string" use="optional">
+            <annotation>
+                <documentation>Points won after the player went forward close to the net.</documentation>
+            </annotation>
+        </attribute>
+        <attribute name="net-points-played" type="string" use="optional">
+            <annotation>
+                <documentation>Number of points played where the player went forward to the net.</documentation>
+            </annotation>
+        </attribute>
+        <attribute name="net-points-won-pct" type="string" use="optional">
+            <annotation>
+                <documentation>Percentage of points won after the player went forward close to the net. Should be possible to calculate from the other net-xxx attributes.</documentation>
+            </annotation>
+        </attribute>
+        <attribute name="points-won" type="string" use="optional">
+            <annotation>
+                <documentation>Total number of points won.</documentation>
+            </annotation>
+        </attribute>
+        <attribute name="winners" type="string" use="optional">
+            <annotation>
+                <documentation>Total number of winning strokes.</documentation>
+            </annotation>
+        </attribute>
+        <attribute name="winners-forehand" type="string" use="optional">
+            <annotation>
+                <documentation>Total number of winning strokes using the forehand.</documentation>
+            </annotation>
+        </attribute>
+        <attribute name="winners-backhand" type="string" use="optional">
+            <annotation>
+                <documentation>Total number of winning strokes using the backhand.</documentation>
+            </annotation>
+        </attribute>
+        <attribute name="winners-volley" type="string" use="optional">
+            <annotation>
+                <documentation>Total number of winning strokes using volley.</documentation>
+            </annotation>
+        </attribute>
+        <attribute name="unforced-errors" type="string" use="optional">
+            <annotation>
+                <documentation>Total number of unforced errors performed.</documentation>
+            </annotation>
+        </attribute>
+    </attributeGroup>
+    <element name="tournament-metadata-tennis">
+        <annotation>
+            <documentation>For holding metadata having to do with a tennis tournament. Includes an attribute for the name of the tennis tour.</documentation>
+        </annotation>
+        <complexType>
+            <attributeGroup ref="sportsml:globalAttributes"/>
+            <attribute name="tour-name" type="string" use="optional">
+                <annotation>
+                    <documentation>The name of the tour.</documentation>
+                </annotation>
+            </attribute>
+        </complexType>
+    </element>
+    <element name="event-metadata-tennis">
+        <annotation>
+            <documentation>Metadata about the specific tennis match. | When in the match this document was issued.</documentation>
+        </annotation>
+        <complexType>
+            <attributeGroup ref="sportsml:globalAttributes"/>
+            <attributeGroup ref="sportsml:eventStateTennis"/>
+            <attribute name="number-of-sets" type="string" use="optional">
+                <annotation>
+                    <documentation>How many sets the match is played for. Normally 3 or 5.</documentation>
+                </annotation>
+            </attribute>
+        </complexType>
+    </element>
+    <element name="team-metadata-tennis">
+        <annotation>
+            <documentation>A placeholder for event metadata specific for tennis. | Reserved for future use.</documentation>
+        </annotation>
+        <complexType>
+            <attributeGroup ref="sportsml:globalAttributes"/>
+        </complexType>
+    </element>
+    <element name="team-stats-tennis">
+        <annotation>
+            <documentation>Holds tennis-specific stats. Used for doubles matches. | Generally having to do with the score of the match.</documentation>
+        </annotation>
+        <complexType>
+            <sequence>
+                <element ref="sportsml:stats-tennis-service" minOccurs="0" maxOccurs="unbounded"/>
+                <element ref="sportsml:stats-tennis-return" minOccurs="0" maxOccurs="unbounded"/>
+                <element ref="sportsml:stats-tennis-set" minOccurs="0" maxOccurs="unbounded"/>
+            </sequence>
+            <attributeGroup ref="sportsml:globalAttributes"/>
+            <attributeGroup ref="sportsml:coverageAttributes"/>
+            <attributeGroup ref="sportsml:statsTennis"/>
+        </complexType>
+    </element>
+    <element name="stats-tennis-service">
+        <annotation>
+            <documentation>Stats for the play where the player served.</documentation>
+        </annotation>
+        <complexType>
+            <attributeGroup ref="sportsml:globalAttributes"/>
+            <attributeGroup ref="sportsml:coverageAttributes"/>
+            <attribute name="matches-played" type="string" use="optional">
+                <annotation>
+                    <documentation>DEPRECATE: No point for this attribute being here.</documentation>
+                </annotation>
+            </attribute>
+            <attribute name="aces" type="string" use="optional">
+                <annotation>
+                    <documentation>How many serve-aces the player shot.</documentation>
+                </annotation>
+            </attribute>
+            <attribute name="first-services-good" type="string" use="optional">
+                <annotation>
+                    <documentation>Number of first serves that were good.</documentation>
+                </annotation>
+            </attribute>
+            <attribute name="first-services-good-pct" type="string" use="optional">
+                <annotation>
+                    <documentation>The percentage of good first serves.</documentation>
+                </annotation>
+            </attribute>
+            <attribute name="first-services-points-won" type="string" use="optional">
+                <annotation>
+                    <documentation>How many points won after the first serve was good.</documentation>
+                </annotation>
+            </attribute>
+            <attribute name="first-services-points-won-pct" type="string" use="optional">
+                <annotation>
+                    <documentation>Percentage of games won after first serve was good.</documentation>
+                </annotation>
+            </attribute>
+            <attribute name="second-services-points-won" type="string" use="optional">
+                <annotation>
+                    <documentation>How many points won after the second serve was good.</documentation>
+                </annotation>
+            </attribute>
+            <attribute name="second-services-points-won-pct" type="string" use="optional">
+                <annotation>
+                    <documentation>Percentage of games won after second serve was good.</documentation>
+                </annotation>
+            </attribute>
+            <attribute name="service-games-played" type="string" use="optional">
+                <annotation>
+                    <documentation>How many games in the match or set this player or team served.</documentation>
+                </annotation>
+            </attribute>
+            <attribute name="service-games-won" type="string" use="optional">
+                <annotation>
+                    <documentation>Number of games won in which the player served.</documentation>
+                </annotation>
+            </attribute>
+            <attribute name="service-games-won-pct" type="string" use="optional">
+                <annotation>
+                    <documentation>The percentage of games won in which the player served.</documentation>
+                </annotation>
+            </attribute>
+            <attribute name="break-points-played" type="string" use="optional">
+                <annotation>
+                    <documentation>How many break-points did the other team/player have against the serving player.</documentation>
+                </annotation>
+            </attribute>
+            <attribute name="break-points-saved" type="string" use="optional">
+                <annotation>
+                    <documentation>How many of these break-points were saved by the serving player.</documentation>
+                </annotation>
+            </attribute>
+            <attribute name="break-points-saved-pct" type="string" use="optional">
+                <annotation>
+                    <documentation>The percentage of breakpoints saved. (There is some discussion on whether to include all possible break-points or just the deciding ones.)</documentation>
+                </annotation>
+            </attribute>
+            <attribute name="serve-points-played" type="string" use="optional">
+                <annotation>
+                    <documentation>How many points were played with this player/team serving. New attribute and therefore using the more proper term serve instead of service.</documentation>
+                </annotation>
+            </attribute>
+            <attribute name="service-points-won" type="string" use="optional">
+                <annotation>
+                    <documentation>Total points won where the player served. This should be the same as a sum of first-service-points-won and second-service-points-won.</documentation>
+                </annotation>
+            </attribute>
+            <attribute name="service-points-won-pct" type="string" use="optional">
+                <annotation>
+                    <documentation>The percentage of points won by the serving player. Should be possible to calculate from other attributes here.</documentation>
+                </annotation>
+            </attribute>
+            <attribute name="double-faults" type="string" use="optional">
+                <annotation>
+                    <documentation>How many double-faults committed by the serving player.</documentation>
+                </annotation>
+            </attribute>
+            <attribute name="first-service-top-speed" type="string" use="optional">
+                <annotation>
+                    <documentation>The top speed recorded among the serves from this player/team.</documentation>
+                </annotation>
+            </attribute>
+            <attribute name="first-serve-average-speed" type="string" use="optional">
+                <annotation>
+                    <documentation>The average speed recorded among the first serves from this player/team. New attribute and therefore using the more proper term serve instead of service.</documentation>
+                </annotation>
+            </attribute>
+            <attribute name="second-services-good" type="string" use="optional">
+                <annotation>
+                    <documentation>The number of good second serves.</documentation>
+                </annotation>
+            </attribute>
+            <attribute name="second-services-good-pct" type="string" use="optional">
+                <annotation>
+                    <documentation>The percentage of good second serves.</documentation>
+                </annotation>
+            </attribute>
+            <attribute name="second-serve-average-speed" type="string" use="optional">
+                <annotation>
+                    <documentation>The average speed recorded among the second serves from this player/team. New attribute and therefore using the more proper term serve instead of service.</documentation>
+                </annotation>
+            </attribute>
+            <attribute name="speed-units" type="string" use="optional">
+                <annotation>
+                    <documentation>The measurement unit used for the various speed attributes. Normally mph, but can be m/s or km/h or something else.</documentation>
+                </annotation>
+            </attribute>
+        </complexType>
+    </element>
+    <element name="stats-tennis-return">
+        <annotation>
+            <documentation>Stats for play where the player is receiving the serve.</documentation>
+        </annotation>
+        <complexType>
+            <attributeGroup ref="sportsml:globalAttributes"/>
+            <attributeGroup ref="sportsml:coverageAttributes"/>
+            <attribute name="returns-played" type="string" use="optional">
+                <annotation>
+                    <documentation>How many points played where this player/team received the serve.</documentation>
+                </annotation>
+            </attribute>
+            <attribute name="receive-points-won" type="string" use="optional">
+                <annotation>
+                    <documentation>How many points won by the receiving player. New attribute using the term receive which is preferred to return.</documentation>
+                </annotation>
+            </attribute>
+            <attribute name="receive-points-won-pct" type="string" use="optional">
+                <annotation>
+                    <documentation>The percentage of points won by the receiving player. New attribute using the term receive which is preferred to return.</documentation>
+                </annotation>
+            </attribute>
+            <attribute name="matches-played" type="string" use="optional">
+                <annotation>
+                    <documentation>DEPRECATE: No point for this attribute being here.</documentation>
+                </annotation>
+            </attribute>
+            <attribute name="first-service-return-points-won" type="string" use="optional">
+                <annotation>
+                    <documentation>How many points won by the player after receiving the first serve.</documentation>
+                </annotation>
+            </attribute>
+            <attribute name="first-service-return-points-won-pct" type="string" use="optional">
+                <annotation>
+                    <documentation>The percentage of points won by the player after receiving the first serve.</documentation>
+                </annotation>
+            </attribute>
+            <attribute name="second-service-return-points-won" type="string" use="optional">
+                <annotation>
+                    <documentation>How many points won after receiving the second serve.</documentation>
+                </annotation>
+            </attribute>
+            <attribute name="second-service-return-points-won-pct" type="string" use="optional">
+                <annotation>
+                    <documentation>The percentage of points won after receiving the second serve.</documentation>
+                </annotation>
+            </attribute>
+            <attribute name="return-games-played" type="string" use="optional">
+                <annotation>
+                    <documentation>And how does this compare to the returns-played and matches-played above?</documentation>
+                </annotation>
+            </attribute>
+            <attribute name="return-games-won" type="string" use="optional">
+                <annotation>
+                    <documentation>How many games won after receiving the serve.</documentation>
+                </annotation>
+            </attribute>
+            <attribute name="return-games-won-pct" type="string" use="optional">
+                <annotation>
+                    <documentation>The percentage of games won after receiving the serve.</documentation>
+                </annotation>
+            </attribute>
+            <attribute name="break-points-played" type="string" use="optional">
+                <annotation>
+                    <documentation>How many possible break-points the receiving player/team had.</documentation>
+                </annotation>
+            </attribute>
+            <attribute name="break-points-converted" type="string" use="optional">
+                <annotation>
+                    <documentation>The number of break-points that resulted in actually breaking the serve.</documentation>
+                </annotation>
+            </attribute>
+            <attribute name="break-points-converted-pct" type="string" use="optional">
+                <annotation>
+                    <documentation>The percentage of converted break-points.</documentation>
+                </annotation>
+            </attribute>
+        </complexType>
+    </element>
+    <element name="stats-tennis-set">
+        <annotation>
+            <documentation>Holds the score of a set. | Includes an attribute for a set's tiebreaker score.</documentation>
+        </annotation>
+        <complexType>
+            <sequence>
+                <element ref="sportsml:stats-tennis-service" minOccurs="0" maxOccurs="unbounded"/>
+                <element ref="sportsml:stats-tennis-return" minOccurs="0" maxOccurs="unbounded"/>
+                <element ref="sportsml:stats-tennis-game" minOccurs="0" maxOccurs="unbounded"/>
+            </sequence>
+            <attributeGroup ref="sportsml:globalAttributes"/>
+            <attributeGroup ref="sportsml:coverageAttributes"/>
+            <attributeGroup ref="sportsml:statsTennis"/>
+            <attribute name="set-number" type="string" use="optional">
+                <annotation>
+                    <documentation>An integer, generally 1 through 7.</documentation>
+                </annotation>
+            </attribute>
+            <attribute name="score" type="string" use="optional">
+                <annotation>
+                    <documentation>The score for this player or this team for this set.</documentation>
+                </annotation>
+            </attribute>
+            <attribute name="score-tiebreaker" type="string" use="optional">
+                <annotation>
+                    <documentation>An integer. Generally 0 through 7.</documentation>
+                </annotation>
+            </attribute>
+            <attribute name="duration" type="string" use="optional">
+                <annotation>
+                    <documentation>The length in minutes of the set or game where it is inserted.</documentation>
+                </annotation>
+            </attribute>
+        </complexType>
+    </element>
+    <element name="stats-tennis-game">
+        <annotation>
+            <documentation>Holds the score of a game. | Also holds details of each point.</documentation>
+        </annotation>
+        <complexType>
+            <sequence>
+                <element ref="sportsml:stats-tennis-service" minOccurs="0" maxOccurs="unbounded"/>
+                <element ref="sportsml:stats-tennis-return" minOccurs="0" maxOccurs="unbounded"/>
+            </sequence>
+            <attributeGroup ref="sportsml:globalAttributes"/>
+            <attributeGroup ref="sportsml:coverageAttributes"/>
+            <attributeGroup ref="sportsml:statsTennis"/>
+            <attribute name="score" use="optional"  type="sportsml:gameResult.Tennis">
+                <annotation>
+                    <documentation>Either love, 15, 30, 40, or game.</documentation>
+                </annotation>
+            </attribute>
+            <attribute name="duration" type="string" use="optional">
+                <annotation>
+                    <documentation>The length in minutes of the set or game where it is inserted.</documentation>
+                </annotation>
+            </attribute>
+        </complexType>
+    </element>
+    <element name="player-metadata-tennis">
+        <annotation>
+            <documentation>Holds metadata specific to a tennis player. | Reserved for future use.</documentation>
+        </annotation>
+        <complexType>
+            <attributeGroup ref="sportsml:globalAttributes"/>
+        </complexType>
+    </element>
+    <element name="player-stats-tennis">
+        <annotation>
+            <documentation>Holds tennis-specific stats. Used for singles matches. | Generally having to do with the score of the match.</documentation>
+        </annotation>
+        <complexType>
+            <sequence>
+                <element ref="sportsml:stats-tennis-service" minOccurs="0" maxOccurs="unbounded"/>
+                <element ref="sportsml:stats-tennis-return" minOccurs="0" maxOccurs="unbounded"/>
+                <element ref="sportsml:stats-tennis-set" minOccurs="0" maxOccurs="unbounded"/>
+            </sequence>
+            <attributeGroup ref="sportsml:globalAttributes"/>
+            <attributeGroup ref="sportsml:coverageAttributes"/>
+            <attributeGroup ref="sportsml:statsTennis"/>
+        </complexType>
+    </element>
+    <element name="event-actions-tennis">
+        <annotation>
+            <documentation>A holder for actions taking place in a tennis match. | Either a point, or a custom action.</documentation>
+        </annotation>
+        <complexType>
+            <choice minOccurs="0" maxOccurs="unbounded">
+                <element ref="sportsml:action-tennis-point"/>
+                <element ref="sportsml:action-tennis-other"/>
+            </choice>
+            <attributeGroup ref="sportsml:globalAttributes"/>
+        </complexType>
+    </element>
+    <attributeGroup name="eventStateTennis">
+        <annotation>
+            <documentation>A group of attributes (set, game, server, server-score, receiver receiver-score, serve-number) that can be used for tennis actions.</documentation>
+        </annotation>
+        <attribute name="set" type="string" use="optional">
+            <annotation>
+                <documentation>Which set in the game this item covers. Normally 1,2,3,4 or 5.</documentation>
+            </annotation>
+        </attribute>
+        <attribute name="game" type="string" use="optional">
+            <annotation>
+                <documentation>Wich game in the current set this item covers. Generally 1 through 7.</documentation>
+            </annotation>
+        </attribute>
+        <attribute name="server-idref" type="IDREF" use="optional">
+            <annotation>
+                <documentation>A pointer to the player-id or team-id who served the ball on this point.</documentation>
+            </annotation>
+        </attribute>
+        <attribute name="server-score" use="optional" type="sportsml:gameResult.Tennis">
+            <annotation>
+                <documentation>The score of the player or team presently serving, either love, 15, 30, 40, game.</documentation>
+            </annotation>
+        </attribute>
+        <attribute name="receiver-idref" type="IDREF" use="optional">
+            <annotation>
+                <documentation>A pointer to the player-id or team-id who received the served ball on this point.</documentation>
+            </annotation>
+        </attribute>
+        <attribute name="receiver-score" use="optional" type="sportsml:gameResult.Tennis">
+            <annotation>
+                <documentation>The score of the player or team presently receiving, either love, 15, 30, 40, game.</documentation>
+            </annotation>
+        </attribute>
+        <attribute name="serve-number" use="optional">
+            <annotation>
+                <documentation>Identifying either the first or second serve.</documentation>
+            </annotation>
+            <simpleType>
+                <restriction base="string">
+                    <enumeration value="first"/>
+                    <enumeration value="second"/>
+                </restriction>
+            </simpleType>
+        </attribute>
+    </attributeGroup>
+    
+    <element name="action-tennis-point">
+        <annotation>
+            <documentation>Can be recorded whenever a point is won. | Includes an identifier for how that point was won.</documentation>
+        </annotation>
+        <complexType>
+            <attributeGroup ref="sportsml:globalAttributes"/>
+            <attributeGroup ref="sportsml:eventStateTennis"/>
+            <attribute name="winner-idref" type="IDREF" use="optional">
+                <annotation>
+                    <documentation>A pointer to the player or team (for doubles) who won the point.</documentation>
+                </annotation>
+            </attribute>
+            <attribute name="win-type" type="sportsml:winType.Tennis" use="optional">
+                <annotation>
+                    <documentation>If the point was forced or unforced. The meaning will be a bit different depending on weather the point was awarded due to a ball out or not.</documentation>
+                </annotation>
+            </attribute>
+            <attribute name="shot-type" type="sportsml:shotType.Tennis" use="optional">
+                <annotation>
+                    <documentation>What type of shot (or mistake by the opponent) resulted in the point.</documentation>
+                </annotation>
+            </attribute>
+            <attribute name="comment" type="string" use="optional">
+                <annotation>
+                    <documentation>Textual comment about the action.</documentation>
+                </annotation>
+            </attribute>
+        </complexType>
+    </element>
+    
+    <element name="action-tennis-other">
+        <annotation>
+            <documentation>A custom action. | For use when none of the pre-build actions apply.</documentation>
+        </annotation>
+        <complexType>
+            <attributeGroup ref="sportsml:globalAttributes"/>
+            <attributeGroup ref="sportsml:eventStateTennis"/>
+            <attribute name="action-source" type="string" use="optional">
+                <annotation>
+                    <documentation>The name of the controlled-vocabulary for the action-type attribute.</documentation>
+                </annotation>
+            </attribute>
+            <attribute name="action-type" type="string" use="optional">
+                <annotation>
+                    <documentation>A selection from a controlled-vocabulary list maintained by the publisher.</documentation>
+                </annotation>
+            </attribute>
+            <attribute name="comment" type="string" use="optional">
+                <annotation>
+                    <documentation>Textual comment about the action.</documentation>
+                </annotation>
+            </attribute>
+        </complexType>
+    </element>
+</schema>

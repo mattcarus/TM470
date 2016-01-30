@@ -1,0 +1,732 @@
+<?xml version="1.0"?>
+<!--
+IPTC - International Press Telecommunications Council
+20 Garrick Street, London WC2E 9BT, United Kingdom
+www.iptc.org
+
+See sportsml.xsd to view Non-Exclusive License Agreement for 
+International Press Telecommunications Council, which
+applies to this specification.
+
+	New in 2.2:
+
+	action-rugby-penalty
+		added "team-idref" attribute (to indicate recipient team)
+		
+	ERRATA:
+		added vocab types to the following attributes: person-replacing-position, score-attempt-type, 
+		score-attempt-result, foul-name, foul-result, penalty-type, penalty-level
+
+-->
+
+<schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:sportsml="http://iptc.org/std/SportsML/2008-04-01/" targetNamespace="http://iptc.org/std/SportsML/2008-04-01/" version="2.2">
+	<attributeGroup name="eventStateRugby">
+		<attribute name="period-value" type="string" use="optional">
+			<annotation>
+				<documentation>Identifier for the period segment of a game. (1, 2 for first and second halfs, 3 for first overtime, etc.)</documentation>
+			</annotation>
+		</attribute>
+		<attribute name="period-time-elapsed" type="string" use="optional">
+			<annotation>
+				<documentation>Detailed time MMSS that has elapsed.</documentation>
+			</annotation>
+		</attribute>
+		<attribute name="minutes-elapsed" type="string" use="optional">
+			<annotation>
+				<documentation>Number of minutes that have elapsed since the beginning of the game.</documentation>
+			</annotation>
+		</attribute>
+		<attribute name="period-minute-elapsed" type="string" use="optional">
+			<annotation>
+				<documentation>The time elapsed, but only given as whole minutes.</documentation>
+			</annotation>
+		</attribute>
+		<attribute name="period-time-remaining" type="string" use="optional">
+			<annotation>
+				<documentation>Detailed time in MMSS format showing remaining time of period.</documentation>
+			</annotation>
+		</attribute>
+	</attributeGroup>
+	<element name="event-metadata-rugby">
+		<annotation>
+			<documentation>Rugby-specific metadata for events. | Metadata that is specific to rugby for events.</documentation>
+		</annotation>
+		<complexType>
+			<sequence>
+				<element ref="sportsml:time-adjustment" minOccurs="0" maxOccurs="unbounded"/>
+			</sequence>
+			<attributeGroup ref="sportsml:globalAttributes"/>
+			<attributeGroup ref="sportsml:eventStateRugby"/>
+			<attribute name="kick-off-team-idref" type="IDREF" use="optional">
+				<annotation>
+					<documentation>Pointer to the team doing the kick-off for the period covered.</documentation>
+				</annotation>
+			</attribute>
+		</complexType>
+	</element>
+	<element name="time-adjustment-rugby">
+		<annotation>
+			<documentation>Record time added by referee. | Holds values for the time added by the referee and how much extra time was actually played.</documentation>
+		</annotation>
+		<complexType>
+			<attributeGroup ref="sportsml:globalAttributes"/>
+			<attributeGroup ref="sportsml:eventStateRugby"/>
+			<attribute name="period-extra-time-added" type="string" use="optional">
+				<annotation>
+					<documentation>How many minutes the referee has decided to add to the period.</documentation>
+				</annotation>
+			</attribute>
+			<attribute name="period-extra-time-elapsed" type="string" use="optional">
+				<annotation>
+					<documentation>How much time exactly MMSS that was actually elapsed in the period.</documentation>
+				</annotation>
+			</attribute>
+		</complexType>
+	</element>
+	<element name="team-metadata-rugby">
+		<annotation>
+			<documentation>Rugby specific metadata for one team. | The team-metadata that is specific for rugby and does not apply in all sports.</documentation>
+		</annotation>
+		<complexType>
+			<attributeGroup ref="sportsml:globalAttributes"/>
+		</complexType>
+	</element>
+	<element name="team-stats-rugby">
+		<annotation>
+			<documentation>Rugby specific stats for one team. | Team-stats that are specific to rugby and does not apply to all sports.</documentation>
+		</annotation>
+		<complexType>
+			<sequence>
+				<element ref="sportsml:stats-rugby-offensive" minOccurs="0" maxOccurs="unbounded"/>
+				<element ref="sportsml:stats-rugby-defensive" minOccurs="0" maxOccurs="unbounded"/>
+				<element ref="sportsml:stats-rugby-foul" minOccurs="0" maxOccurs="unbounded"/>
+			</sequence>
+			<attributeGroup ref="sportsml:globalAttributes"/>
+			<attributeGroup ref="sportsml:coverageAttributes"/>
+		</complexType>
+	</element>
+	<element name="stats-rugby-offensive">
+		<annotation>
+			<documentation>Offensive stats specific to rugby. | Offensive stats for one team, specific to rugby.</documentation>
+		</annotation>
+		<complexType>
+			<attributeGroup ref="sportsml:globalAttributes"/>
+			<attributeGroup ref="sportsml:coverageAttributes"/>
+			<attribute name="tries-scored" type="string" use="optional">
+				<annotation>
+					<documentation>Tries scored.</documentation>
+				</annotation>
+			</attribute>
+			<attribute name="tries-scored-per-game" type="string" use="optional">
+				<annotation>
+					<documentation>Average number of tries scored per match.</documentation>
+				</annotation>
+			</attribute>
+			<attribute name="penalty-tries-total" type="string" use="optional">
+				<annotation>
+					<documentation>Penalty tries awarded.</documentation>
+				</annotation>
+			</attribute>
+			<attribute name="penalty-tries-per-game" type="string" use="optional">
+				<annotation>
+					<documentation>Average number of penalty tries awarded per match.</documentation>
+				</annotation>
+			</attribute>
+			<attribute name="drop-goal-attempts" type="string" use="optional">
+				<annotation>
+					<documentation>Drop goal attempts</documentation>
+				</annotation>
+			</attribute>
+			<attribute name="drop-goals-scored" type="string" use="optional">
+				<annotation>
+					<documentation>Drop goals scored</documentation>
+				</annotation>
+			</attribute>
+			<attribute name="drop-goals-scored-per-game" type="string" use="optional">
+				<annotation>
+					<documentation>Average drop goals scored per match</documentation>
+				</annotation>
+			</attribute>
+			<attribute name="penalty-goal-attempts" type="string" use="optional">
+				<annotation>
+					<documentation>Penalty goal attempts</documentation>
+				</annotation>
+			</attribute>
+			<attribute name="penalty-goals-scored" type="string" use="optional">
+				<annotation>
+					<documentation>Penalty goals scored</documentation>
+				</annotation>
+			</attribute>
+			<attribute name="penalty-goals-scored-per-game" type="string" use="optional">
+				<annotation>
+					<documentation>Average penalty goals scored per match</documentation>
+				</annotation>
+			</attribute>
+			<attribute name="conversion-attempts" type="string" use="optional">
+				<annotation>
+					<documentation>Conversion attempts</documentation>
+				</annotation>
+			</attribute>
+			<attribute name="conversions-scored" type="string" use="optional">
+				<annotation>
+					<documentation>Conversions scored</documentation>
+				</annotation>
+			</attribute>
+			<attribute name="conversions-scored-per-game" type="string" use="optional">
+				<annotation>
+					<documentation>Average conversions scored per match</documentation>
+				</annotation>
+			</attribute>
+			<attribute name="free-kicks-total" type="string" use="optional">
+				<annotation>
+					<documentation>Number of free kicks</documentation>
+				</annotation>
+			</attribute>
+			<attribute name="free-kicks-per-game" type="string" use="optional">
+				<annotation>
+					<documentation>Average free kicks per match</documentation>
+				</annotation>
+			</attribute>
+			<attribute name="kicks-total" type="string" use="optional">
+				<annotation>
+					<documentation>Number of kicks</documentation>
+				</annotation>
+			</attribute>
+			<attribute name="kicks-into-touch" type="string" use="optional">
+				<annotation>
+					<documentation>Number of kicks into touch</documentation>
+				</annotation>
+			</attribute>
+			<attribute name="runs" type="string" use="optional">
+				<annotation>
+					<documentation>Number of runs</documentation>
+				</annotation>
+			</attribute>
+			<attribute name="metres-gained" type="string" use="optional">
+				<annotation>
+					<documentation>Total number of metres advanced in the match</documentation>
+				</annotation>
+			</attribute>
+			<attribute name="scrums-total" type="string" use="optional">
+				<annotation>
+					<documentation>Number of scrums by team.</documentation>
+				</annotation>
+			</attribute>
+			<attribute name="scrums-won-for" type="string" use="optional">
+				<annotation>
+					<documentation>Number of own scrums won.</documentation>
+				</annotation>
+			</attribute>
+			<attribute name="line-outs-total" type="string" use="optional">
+				<annotation>
+					<documentation>Number of line-outs by team.</documentation>
+				</annotation>
+			</attribute>
+			<attribute name="line-outs-won-for" type="string" use="optional">
+				<annotation>
+					<documentation>Number of lineouts won on own put in</documentation>
+				</annotation>
+			</attribute>
+			<attribute name="rucks-total" type="string" use="optional">
+				<annotation>
+					<documentation>Number of rucks by team.</documentation>
+				</annotation>
+			</attribute>
+			<attribute name="rucks-won-for" type="string" use="optional">
+				<annotation>
+					<documentation>Number of rucks won where team brought the ball in</documentation>
+				</annotation>
+			</attribute>
+			<attribute name="mauls-total" type="string" use="optional">
+				<annotation>
+					<documentation>Number of mauls by team.</documentation>
+				</annotation>
+			</attribute>
+			<attribute name="mauls-won-for" type="string" use="optional">
+				<annotation>
+					<documentation>Number of own mauls won.</documentation>
+				</annotation>
+			</attribute>
+			<attribute name="handling-errors" type="string" use="optional">
+				<annotation>
+					<documentation>Number of handling errors</documentation>
+				</annotation>
+			</attribute>
+			<attribute name="handling-errors-per-game" type="string" use="optional">
+				<annotation>
+					<documentation>Average handling errors per match</documentation>
+				</annotation>
+			</attribute>
+		</complexType>
+	</element>
+	<element name="stats-rugby-defensive">
+		<annotation>
+			<documentation>Defensive stats specific to rugby. | Defensive stats for one team, specific to rugby.</documentation>
+		</annotation>
+		<complexType>
+			<attributeGroup ref="sportsml:globalAttributes"/>
+			<attributeGroup ref="sportsml:coverageAttributes"/>
+			<attribute name="tackles" type="string" use="optional">
+				<annotation>
+					<documentation>Number of tackles</documentation>
+				</annotation>
+			</attribute>
+			<attribute name="tackles-missed" type="string" use="optional">
+				<annotation>
+					<documentation>Number of tackles missed</documentation>
+				</annotation>
+			</attribute>
+			<attribute name="scrums-won-against" type="string" use="optional">
+				<annotation>
+					<documentation>Number of scrums won on opponent's put in</documentation>
+				</annotation>
+			</attribute>
+			<attribute name="line-outs-won-against" type="string" use="optional">
+				<annotation>
+					<documentation>Number of lineouts won on opponent's put in</documentation>
+				</annotation>
+			</attribute>
+			<attribute name="rucks-won-against" type="string" use="optional">
+				<annotation>
+					<documentation>Number of rucks won where opponent brought the ball in</documentation>
+				</annotation>
+			</attribute>
+			<attribute name="mauls-won-against" type="string" use="optional">
+				<annotation>
+					<documentation>Number of opposing teams's mauls won.</documentation>
+				</annotation>
+			</attribute>
+			<attribute name="penalties-conceded" type="string" use="optional">
+				<annotation>
+					<documentation>Number of penalties conceded to opposing team.</documentation>
+				</annotation>
+			</attribute>
+			<attribute name="penalties-conceded-per-game" type="string" use="optional">
+				<annotation>
+					<documentation>Average number of penalties conceded to opposing team</documentation>
+				</annotation>
+			</attribute>
+		</complexType>
+	</element>
+	<element name="stats-rugby-foul">
+		<annotation>
+			<documentation>Stats specific to fauls, cautions, and ejections. | Could occur while players are on the offense, the defense, or even the bench.</documentation>
+		</annotation>
+		<complexType>
+			<attributeGroup ref="sportsml:globalAttributes"/>
+			<attributeGroup ref="sportsml:coverageAttributes"/>
+			<attribute name="cautions-total" type="string" use="optional">
+				<annotation>
+					<documentation>Total number of cautions recieved.</documentation>
+				</annotation>
+			</attribute>
+			<attribute name="cautions-per-game" type="string" use="optional">
+				<annotation>
+					<documentation>Average number of cautions recieved per match.</documentation>
+				</annotation>
+			</attribute>
+			<attribute name="cautions-pending" type="string" use="optional">
+				<annotation>
+					<documentation>Number of cautions that could result in a game suspension.</documentation>
+				</annotation>
+			</attribute>
+			<attribute name="caution-points-total" type="string" use="optional">
+				<annotation>
+					<documentation>Total amount of caution points. Can occur over various games in a season.</documentation>
+				</annotation>
+			</attribute>
+			<attribute name="caution-points-pending" type="string" use="optional">
+				<annotation>
+					<documentation>Number of caution points that could result in a game suspension.</documentation>
+				</annotation>
+			</attribute>
+			<attribute name="ejections-total" type="string" use="optional">
+				<annotation>
+					<documentation>Total number of ejections.</documentation>
+				</annotation>
+			</attribute>
+			<attribute name="ejections-per-game" type="string" use="optional">
+				<annotation>
+					<documentation>Average number of ejections recieved per match.</documentation>
+				</annotation>
+			</attribute>
+		</complexType>
+	</element>
+	<element name="player-metadata-rugby">
+		<annotation>
+			<documentation>Player metadata specific to rugby. | Metadata for one player, specific to rugby.</documentation>
+		</annotation>
+		<complexType>
+			<attributeGroup ref="sportsml:globalAttributes"/>
+		</complexType>
+	</element>
+	<element name="player-stats-rugby">
+		<annotation>
+			<documentation>Player statistics that are specific to rugby. | Rugby specific statistic information about a player.</documentation>
+		</annotation>
+		<complexType>
+			<sequence>
+				<element ref="sportsml:stats-rugby-offensive" minOccurs="0" maxOccurs="unbounded"/>
+				<element ref="sportsml:stats-rugby-defensive" minOccurs="0" maxOccurs="unbounded"/>
+				<element ref="sportsml:stats-rugby-foul" minOccurs="0" maxOccurs="unbounded"/>
+			</sequence>
+			<attributeGroup ref="sportsml:globalAttributes"/>
+			<attributeGroup ref="sportsml:coverageAttributes"/>
+		</complexType>
+	</element>
+	<element name="event-actions-rugby">
+		<annotation>
+			<documentation>Action specific to rugby. | Actions that are specific to rugby.</documentation>
+		</annotation>
+		<complexType>
+			<choice minOccurs="0" maxOccurs="unbounded">
+				<element ref="sportsml:action-rugby-substitution"/>
+				<element ref="sportsml:action-rugby-score-attempt"/>
+				<element ref="sportsml:action-rugby-score"/>
+				<element ref="sportsml:action-rugby-offside"/>
+				<element ref="sportsml:action-rugby-penalty"/>
+				<element ref="sportsml:action-rugby-timeout"/>
+				<element ref="sportsml:action-rugby-other"/>
+			</choice>
+			<attributeGroup ref="sportsml:globalAttributes"/>
+		</complexType>
+	</element>
+	<element name="action-rugby-substitution">
+		<annotation>
+			<documentation>Substition of a person involved in a game. | Substitution of one person for another in a given position in a game. Not limited to players.</documentation>
+		</annotation>
+		<complexType>
+			<attributeGroup ref="sportsml:globalAttributes"/>
+			<attributeGroup ref="sportsml:eventStateRugby"/>
+			<attribute name="person-type" use="optional">
+				<annotation>
+					<documentation>What position the person beeing replaced held.</documentation>
+				</annotation>
+				<simpleType>
+					<restriction base="string">
+						<enumeration value="player"/>
+						<enumeration value="associate"/>
+						<enumeration value="official"/>
+					</restriction>
+				</simpleType>
+			</attribute>
+			<attribute name="person-original-idref" type="IDREF" use="optional">
+				<annotation>
+					<documentation>A pointer to the person beeing replaced.</documentation>
+				</annotation>
+			</attribute>
+			<attribute name="person-original-position" type="sportsml:position.Rugby" use="optional">
+				<annotation>
+					<documentation>Position the replaced person held.</documentation>
+				</annotation>
+			</attribute>
+			<attribute name="person-replacing-idref" type="IDREF" use="optional">
+				<annotation>
+					<documentation>A pointer to the person replacing.</documentation>
+				</annotation>
+			</attribute>
+			<attribute name="person-replacing-position" type="sportsml:position.Rugby" use="optional">
+				<annotation>
+					<documentation>Position the substitute will take up.</documentation>
+				</annotation>
+			</attribute>
+			<attribute name="substitution-reason" type="string" use="optional">
+				<annotation>
+					<documentation>Text explaining the reason for the substitute.</documentation>
+				</annotation>
+			</attribute>
+			<attribute name="substitution-type" type="string" use="optional">
+				<annotation>
+					<documentation>Whether a normal or "blood" substitution</documentation>
+				</annotation>
+			</attribute>
+			<attribute name="team-idref" type="IDREF" use="optional">
+				<annotation>
+					<documentation>A pointer to the team doing the substitution.</documentation>
+				</annotation>
+			</attribute>
+			<attribute name="comment" type="string" use="optional">
+				<annotation>
+					<documentation>Textual comment regarding this substitution.</documentation>
+				</annotation>
+			</attribute>
+		</complexType>
+	</element>
+	<element name="action-rugby-score-attempt">
+		<annotation>
+			<documentation>Only used if the attempt is not also a goal. | When a player attempts to score a goal but it does not result in a goal.</documentation>
+		</annotation>
+		<complexType>
+			<attributeGroup ref="sportsml:globalAttributes"/>
+			<attributeGroup ref="sportsml:eventStateRugby"/>
+			<attribute name="player-idref" type="IDREF" use="optional">
+				<annotation>
+					<documentation>idref pointing to the player attempting to score.</documentation>
+				</annotation>
+			</attribute>
+			<attribute name="team-idref" type="IDREF" use="optional">
+				<annotation>
+					<documentation>idref pointing to the team for which the player attempting to score.</documentation>
+				</annotation>
+			</attribute>
+			<attribute name="score-attempt-method" type="string" use="optional">
+				<annotation>
+					<documentation>DEPRECATE: use score-attempt-type. How the player attempted to score. Using head, left leg, right leg etc. External controlled vocabulary: sportsml-vocabulary-specific-rugby.score-attempt-method</documentation>
+				</annotation>
+			</attribute>
+			<attribute name="score-attempt-type" type="sportsml:scoreAttemptType.Rugby" use="optional">
+				<annotation>
+					<documentation>What type of attempt: penalty, drop, conversion.</documentation>
+				</annotation>
+			</attribute>
+			<attribute name="score-attempt-result" type="sportsml:scoreAttemptResult.Rugby" use="optional">
+				<annotation>
+					<documentation>The result of the score attempt: missed, blocked, out-of-bounds.</documentation>
+				</annotation>
+			</attribute>
+			<attribute name="comment" type="string" use="optional">
+				<annotation>
+					<documentation>Textual comment regarding this score-attempt.</documentation>
+				</annotation>
+			</attribute>
+		</complexType>
+	</element>
+	<element name="action-rugby-score">
+		<annotation>
+			<documentation>When a team scores a goal. | Records by whom, how and when a goal was scored and the standing after the goal.</documentation>
+		</annotation>
+		<complexType>
+			<attributeGroup ref="sportsml:globalAttributes"/>
+			<attributeGroup ref="sportsml:eventStateRugby"/>
+			<attribute name="score-attempt-method" type="string" use="optional">
+				<annotation>
+					<documentation>How the player attempted to score. Using head, left leg, right leg etc.</documentation>
+				</annotation>
+			</attribute>
+			<attribute name="score-attempt-type" type="sportsml:scoreAttemptType.Rugby" use="optional">
+				<annotation>
+					<documentation>What type of attempt: penalty, drop, conversion.</documentation>
+				</annotation>
+			</attribute>
+			<attribute name="player-idref" type="IDREF" use="optional">
+				<annotation>
+					<documentation>idref pointing to the player attempting to score.</documentation>
+				</annotation>
+			</attribute>
+			<attribute name="team-idref" type="IDREF" use="optional">
+				<annotation>
+					<documentation>idref pointing to the team for which the player attempting to score.</documentation>
+				</annotation>
+			</attribute>
+			<attribute name="score-team" type="string" use="optional">
+				<annotation>
+					<documentation>The current score for the scoring team after the score is counted.</documentation>
+				</annotation>
+			</attribute>
+			<attribute name="score-team-opposing" type="string" use="optional">
+				<annotation>
+					<documentation>The current score for the opposing team after the score is counted.</documentation>
+				</annotation>
+			</attribute>
+			<attribute name="points" type="string" use="optional">
+				<annotation>
+					<documentation>Number of points awarded: 2|3|5 </documentation>
+				</annotation>
+			</attribute>
+			<attribute name="comment" type="string" use="optional">
+				<annotation>
+					<documentation>Textual comment about the score.</documentation>
+				</annotation>
+			</attribute>
+		</complexType>
+	</element>
+	<element name="action-rugby-offside">
+		<annotation>
+			<documentation>When an offside occurs. | Records the event of an offside in a game.</documentation>
+		</annotation>
+		<complexType>
+			<attributeGroup ref="sportsml:globalAttributes"/>
+			<attributeGroup ref="sportsml:eventStateRugby"/>
+			<attribute name="team-idref" type="IDREF" use="optional">
+				<annotation>
+					<documentation>idref pointing to the team causing the offside.</documentation>
+				</annotation>
+			</attribute>
+			<attribute name="player-offside-idref" type="IDREF" use="optional">
+				<annotation>
+					<documentation>idref pointing to the player the lineman indicated was offisde.</documentation>
+				</annotation>
+			</attribute>
+			<attribute name="player-passing-idref" type="IDREF" use="optional">
+				<annotation>
+					<documentation>idref pointing to the player passing the ball when offside was called.</documentation>
+				</annotation>
+			</attribute>
+			<attribute name="comment" type="string" use="optional">
+				<annotation>
+					<documentation>Textual comment regarding the offside.</documentation>
+				</annotation>
+			</attribute>
+		</complexType>
+	</element>
+	<element name="action-rugby-foul">
+		<annotation>
+			<documentation>When a player commits an infraction against the rules, which may or may not result in a penalty. | Records what happens (or not happens) when a player commits a foul. Cautions and ejections are recorded under penalty.</documentation>
+		</annotation>
+		<complexType>
+			<attributeGroup ref="sportsml:globalAttributes"/>
+			<attributeGroup ref="sportsml:eventStateRugby"/>
+			<attribute name="fouling-team-idref" type="IDREF" use="optional">
+				<annotation>
+					<documentation>idref pointing to the team causing the foul.</documentation>
+				</annotation>
+			</attribute>
+			<attribute name="fouling-player-idref" type="IDREF" use="optional">
+				<annotation>
+					<documentation>idref pointing to the player causing the foul.</documentation>
+				</annotation>
+			</attribute>
+			<attribute name="fouled-team-idref" type="IDREF" use="optional">
+				<annotation>
+					<documentation>idref pointing to the team beeing fouled.</documentation>
+				</annotation>
+			</attribute>
+			<attribute name="fouled-player-idref" type="IDREF" use="optional">
+				<annotation>
+					<documentation>idref pointing to the player beeing fouled.</documentation>
+				</annotation>
+			</attribute>
+			<attribute name="foul-name" type="sportsml:foulName.Rugby" use="optional">
+				<annotation>
+					<documentation>The name of the foul was committed.</documentation>
+				</annotation>
+			</attribute>
+			<attribute name="foul-result" type="sportsml:foulResult.Rugby" use="optional">
+				<annotation>
+					<documentation>The result of the foul: kick, try, etc.</documentation>
+				</annotation>
+			</attribute>
+			<attribute name="comment" type="string" use="optional">
+				<annotation>
+					<documentation>Textual comment regarding the penalty.</documentation>
+				</annotation>
+			</attribute>
+		</complexType>
+	</element>
+	<element name="action-rugby-penalty">
+		<annotation>
+			<documentation>Results from a foul. | Details of a penalty that a foul resulted in.</documentation>
+		</annotation>
+		<complexType>
+			<attributeGroup ref="sportsml:globalAttributes"/>
+			<attributeGroup ref="sportsml:eventStateRugby"/>
+			<attribute name="recipient-type" use="optional">
+				<annotation>
+					<documentation>What type of person or team that got the penalty.</documentation>
+				</annotation>
+				<simpleType>
+					<restriction base="string">
+						<enumeration value="team"/>
+						<enumeration value="player"/>
+						<enumeration value="auxilliary"/>
+						<enumeration value="official"/>
+					</restriction>
+				</simpleType>
+			</attribute>
+			<attribute name="team-idref" type="IDREF" use="optional">
+				<annotation>
+					<documentation>A pointer to the team of the penalized or the penalized team itself.</documentation>
+				</annotation>
+			</attribute>
+			<attribute name="recipient-idref" type="IDREF" use="optional">
+				<annotation>
+					<documentation>idref pointer to the person suffering the penalty.</documentation>
+				</annotation>
+			</attribute>
+			<attribute name="caller-idref" type="string" use="optional">
+				<annotation>
+					<documentation>idref pointing to who called the penalty.</documentation>
+				</annotation>
+			</attribute>
+			<attribute name="penalty-type" type="sportsml:penaltyType.Rugby" use="optional">
+				<annotation>
+					<documentation>The type of penalty: offensive, defensive</documentation>
+				</annotation>
+			</attribute>
+			<attribute name="penalty-level" type="sportsml:penaltyLevel.Rugby" use="optional">
+				<annotation>
+					<documentation>The penalty level: yellow-card, red-card</documentation>
+				</annotation>
+			</attribute>
+			<attribute name="caution-value" type="string" use="optional">
+				<annotation>
+					<documentation>Used to indicate what value, if any, the penalty adds to the caution-total of the player.</documentation>
+				</annotation>
+			</attribute>
+			<attribute name="comment" type="string" use="optional">
+				<annotation>
+					<documentation>Textual comment regarding the penalty.</documentation>
+				</annotation>
+			</attribute>
+		</complexType>
+	</element>
+	<element name="action-rugby-timeout">
+		<annotation>
+			<documentation>A timeout is called. | How, when and what type of timeout was called.</documentation>
+		</annotation>
+		<complexType>
+			<attributeGroup ref="sportsml:globalAttributes"/>
+			<attributeGroup ref="sportsml:eventStateRugby"/>
+			<attribute name="timeout-duration" type="string" use="optional">
+				<annotation>
+					<documentation>The duration of the timeout.</documentation>
+				</annotation>
+			</attribute>
+			<attribute name="caller" use="optional">
+				<annotation>
+					<documentation>Who called the timeout, either team or official.</documentation>
+				</annotation>
+				<simpleType>
+					<restriction base="string">
+						<enumeration value="team"/>
+						<enumeration value="official"/>
+					</restriction>
+				</simpleType>
+			</attribute>
+			<attribute name="caller-idref" type="IDREF" use="optional">
+				<annotation>
+					<documentation>If caller is team, say, an idref pointer to the team element.</documentation>
+				</annotation>
+			</attribute>
+			<attribute name="comment" type="string" use="optional">
+				<annotation>
+					<documentation>Textual comment about the timeout.</documentation>
+				</annotation>
+			</attribute>
+		</complexType>
+	</element>
+	<element name="action-rugby-other">
+		<annotation>
+			<documentation>A custom action. | For use when none of the pre-build actions apply.</documentation>
+		</annotation>
+		<complexType>
+			<attributeGroup ref="sportsml:globalAttributes"/>
+			<attributeGroup ref="sportsml:eventStateRugby"/>
+			<attribute name="action-source" type="string" use="optional">
+				<annotation>
+					<documentation>The name of the controlled-vocabulary for the action-type attribute.</documentation>
+				</annotation>
+			</attribute>
+			<attribute name="action-type" type="string" use="optional">
+				<annotation>
+					<documentation>A selection from a controlled-vocabulary list maintained by the publisher.</documentation>
+				</annotation>
+			</attribute>
+			<attribute name="comment" type="string" use="optional">
+				<annotation>
+					<documentation>Textual comment about the action.</documentation>
+				</annotation>
+			</attribute>
+		</complexType>
+	</element>
+</schema>

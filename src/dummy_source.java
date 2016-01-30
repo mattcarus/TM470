@@ -14,7 +14,7 @@ class Dummy
 		
 	}
 	
-	@Override
+	@Deprecated 
 	public void test()
 	{
 		
