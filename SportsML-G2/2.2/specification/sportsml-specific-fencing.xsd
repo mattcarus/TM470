@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+IPTC - International Press Telecommunications Council
+20 Garrick Street, London WC2E 9BT, United Kingdom
+www.iptc.org
+
+See sportsml.xsd to view Non-Exclusive License Agreement for 
+International Press Telecommunications Council, which
+applies to this specification.
+
+	
+		
+	New in 2.2:
+		stats-tennis-set and stats-tennis-game
+			added statsTennis, stats-tennis-service and stats-tennis-return
+			added attribute duration
+		player-stats-tennis
+			added attribute group statsTennis
+		stats-tennis-service
+			added attribute first-serve-average-speed
+			added attribute second-serve-average-speed
+			added attribute speed-units
+		stats-tennis-return
+			added attribute receive-points-won
+			added attribute receive-points-won-pct
+		event-metadata-tennis
+			added attribute number-of-sets
+		action-tennis-point
+			added attribute shot-type
+			added attribute comment
+		added vocabulary gameResult (love, 15, 30, 40, game, ad, deuce)
+		ERRATUM: removed element action-tennis-volley from event-actions-tennis
+		ERRATUM: removed statsTennis from event-actions-tennis
+		Deprecated matches-played attribute of stats-tennis-service and stats-tennis-return
+		
+
+-->
+<schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:sportsml="http://iptc.org/std/SportsML/2008-04-01/" targetNamespace="http://iptc.org/std/SportsML/2008-04-01/" version="2.2">
+    <annotation>
+        <documentation>Fencing scoring: In general, matches are one of two types, 'poule' or 'direct elimination' (DE). Poule matches are generally fought as first to 5 points and DE to 15. In some cases matches may be fought to other scores, most frequently 10. This is more common in veterans matches or matches between youngsters.</documentation>
+    </annotation>
+    <element name="tournament-metadata-fencing">
+        <annotation>
+            <documentation>For holding metadata having to do with a fencing tournament. Includes attribute for the weapon and age-group.</documentation>
+        </annotation>
+        <complexType>
+            <attributeGroup ref="sportsml:globalAttributes"/>
+            <attribute name="weapon" type="string" use="optional">
+                <annotation>
+                    <documentation>The weapon used in the competition.</documentation>
+                </annotation>
+            </attribute>
+        </complexType>
+    </element>
+    <element name="event-metadata-fencing">
+        <annotation>
+            <documentation>Metadata about the specific fencing match. | When in the match this document was issued.</documentation>
+        </annotation>
+        <complexType>
+            <attributeGroup ref="sportsml:globalAttributes"/>
+            <!-- TODO: Define eventStateFencing -->
+            <attributeGroup ref="sportsml:eventStateFencing"/>
+            <attribute name="winning-score" type="string" use="optional">
+                <annotation>
+                    <documentation>What score must a fencer reach to win. Normally 5 or 15.</documentation>
+                </annotation>
+            </attribute>
+        </complexType>
+    </element>
+    <element name="team-metadata-fencing">
+        <annotation>
+            <documentation>A placeholder for event metadata specific for fencing. | Reserved for future use.</documentation>
+        </annotation>
+        <complexType>
+            <attributeGroup ref="sportsml:globalAttributes"/>
+        </complexType>
+    </element>
+    <element name="team-stats-fencing">
+        <annotation>
+            <documentation>Holds fencing-specific stats. Used for team games. | Generally having to do with the score of the match.</documentation>
+        </annotation>
+        <complexType>
+            <sequence>
+                <element ref="sportsml:dummy-stat" minOccurs="0" maxOccurs="unbounded"/>
+            </sequence>
+            <attributeGroup ref="sportsml:globalAttributes"/>
+            <attributeGroup ref="sportsml:coverageAttributes"/>
+            <!-- TODO: Define statsFencing -->
+            <attributeGroup ref="sportsml:statsFencing"/>
+        </complexType>
+    </element>
+    <element name="stats-fencing-match">
+        <annotation>
+            <documentation>Holds the score of a match. | Also holds details of each point.</documentation>
+        </annotation>
+        <complexType>
+            <attributeGroup ref="sportsml:globalAttributes"/>
+            <attributeGroup ref="sportsml:coverageAttributes"/>
+            <!-- TODO: Define statsFencing -->
+            <attributeGroup ref="sportsml:statsFencing"/>
+            <attribute name="score" use="optional"  type="sportsml:gameResult.Tennis">
+                <annotation>
+                    <documentation>Integer between 0 and the maximum score for the game, or V to denote victory.</documentation>
+                </annotation>
+            </attribute>
+            <attribute name="duration" type="string" use="optional">
+                <annotation>
+                    <documentation>The elapsed length in seconds of the match where it is inserted.</documentation>
+                </annotation>
+            </attribute>
+        </complexType>
+    </element>
+    <element name="player-metadata-fencing">
+        <annotation>
+            <documentation>Holds metadata specific to a fencer. | Reserved for future use.</documentation>
+        </annotation>
+        <complexType>
+            <attributeGroup ref="sportsml:globalAttributes"/>
+        </complexType>
+    </element>
+    <element name="player-stats-fencing">
+        <annotation>
+            <documentation>Holds fencing-specific stats. Used for individual matches. | Generally having to do with the score of the match.</documentation>
+        </annotation>
+        <complexType>
+            <attributeGroup ref="sportsml:globalAttributes"/>
+            <attributeGroup ref="sportsml:coverageAttributes"/>
+            <!-- TODO: Define statsFencing -->
+            <attributeGroup ref="sportsml:statsFencing"/>
+        </complexType>
+    </element>
+    <element name="event-actions-fencing">
+        <annotation>
+            <documentation>A holder for actions taking place in a fencing match. | Either a point, or a custom action.</documentation>
+        </annotation>
+        <complexType>
+            <choice minOccurs="0" maxOccurs="unbounded">
+                <element ref="sportsml:action-fencing-point"/>
+                <element ref="sportsml:action-fencing-other"/>
+            </choice>
+            <attributeGroup ref="sportsml:globalAttributes"/>
+        </complexType>
+    </element>
+    <attributeGroup name="eventStateFencing">
+        <annotation>
+            <!-- TODO: Define fencing-related terms here -->
+            <documentation>A group of attributes (fencer-left, fencer-right, fencer-left-score, fencer-right-score) that can be used for fencing actions.</documentation>
+        </annotation>
+        <attribute name="fencer-left-idref" type="IDREF" use="optional">
+            <annotation>
+                <documentation>A pointer to the player-id or team-id who who fenced on the left side of the piste, when viewed from the referee's position.</documentation>
+            </annotation>
+        </attribute>
+        <attribute name="fencer-right-idref" type="IDREF" use="optional">
+            <annotation>
+                <documentation>A pointer to the player-id or team-id who who fenced on the right side of the piste, when viewed from the referee's position.</documentation>
+            </annotation>
+        </attribute>
+        <!-- TODO: Define matchResult.Fencing -->
+        <attribute name="fencer-left-score" use="optional" type="sportsml:matchResult.Fencing">
+            <annotation>
+                <documentation>The score of the player or team on the left side of the piste, when viewed from the referee's position.</documentation>
+            </annotation>
+        </attribute>
+        <!-- TODO: Define matchResult.Fencing -->
+        <attribute name="fencer-right-score" use="optional" type="sportsml:matchResult.Fencing">
+            <annotation>
+                <documentation>The score of the player or team on the right side of the piste, when viewed from the referee's position.</documentation>
+            </annotation>
+        </attribute>
+    </attributeGroup>
+    
+    <element name="action-fencing-point">
+        <annotation>
+            <documentation>Can be recorded whenever a point is won. | Includes an identifier for how that point was won.</documentation>
+        </annotation>
+        <complexType>
+            <attributeGroup ref="sportsml:globalAttributes"/>
+            <attributeGroup ref="sportsml:eventStateTennis"/>
+            <attribute name="winner-idref" type="IDREF" use="optional">
+                <annotation>
+                    <documentation>A pointer to the player or team (for doubles) who won the point.</documentation>
+                </annotation>
+            </attribute>
+            <!-- TODO: Define winType.Fencing -->
+            <attribute name="win-type" type="sportsml:winType.Fencing" use="optional">
+                <annotation>
+                    <documentation>How the winner won the point (e.g. attack, counterattack, riposte, prise-de-fer etc).</documentation>
+                </annotation>
+            </attribute>
+            <!-- TODO: Define hitZoneType.Fencing -->
+            <attribute name="hit-zone" type="sportsml:hitZoneType.Fencing" use="optional">
+                <annotation>
+                    <documentation>Where the winner hit the loser (e.g. flank, head etc.).</documentation>
+                </annotation>
+            </attribute>
+            <attribute name="comment" type="string" use="optional">
+                <annotation>
+                    <documentation>Textual comment about the action.</documentation>
+                </annotation>
+            </attribute>
+        </complexType>
+    </element>
+    
+    <element name="action-fencing-other">
+        <annotation>
+            <documentation>A custom action. | For use when none of the pre-build actions apply.</documentation>
+        </annotation>
+        <complexType>
+            <attributeGroup ref="sportsml:globalAttributes"/>
+            <attributeGroup ref="sportsml:eventStateTennis"/>
+            <attribute name="action-source" type="string" use="optional">
+                <annotation>
+                    <documentation>The name of the controlled-vocabulary for the action-type attribute.</documentation>
+                </annotation>
+            </attribute>
+            <attribute name="action-type" type="string" use="optional">
+                <annotation>
+                    <documentation>A selection from a controlled-vocabulary list maintained by the publisher.</documentation>
+                </annotation>
+            </attribute>
+            <attribute name="comment" type="string" use="optional">
+                <annotation>
+                    <documentation>Textual comment about the action.</documentation>
+                </annotation>
+            </attribute>
+        </complexType>
+    </element>
+</schema>

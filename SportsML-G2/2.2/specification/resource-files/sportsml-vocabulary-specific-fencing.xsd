@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<schema
+	xmlns="http://www.w3.org/2001/XMLSchema"
+	xmlns:sportsml="http://iptc.org/std/SportsML/2008-04-01/"
+	version="2.2"
+	>
+	<simpleType name="penaltyType.Fencing.Vocabulary">
+		<restriction base="string">
+			<enumeration value="yellow"/>
+			<enumeration value="red"/>
+			<enumeration value="black"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="weaponType.Fencing.Vocabulary">
+		<restriction base="string">
+			<enumeration value="foil"/>
+			<enumeration value="epee"/>
+			<enumeration value="sabre"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="ageGroupType.Fencing.Vocabulary">
+		<restriction base="string">
+			<enumeration value="cadet"/>
+			<enumeration value="junior"/>
+			<enumeration value="senior"/>
+			<enumeration value="veteran"/>
+		</restriction>
+	</simpleType>
+		
+</schema>
