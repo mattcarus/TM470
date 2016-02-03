@@ -35,7 +35,8 @@
     <tournament-division>
       <!--
           In the context of fencing, Open refers to an 'age category', others might be u15, u17, veteran etc.
-          Younger age categories may also be referred to by a french name such as 'poussin' for u9. The full list is here: https://fr.wikipedia.org/wiki/Cat%C3%A9gorie_(sports)#Cat.C3.A9gories_en_athl.C3.A9tisme
+          Younger age categories may also be referred to by a french name such as 'poussin' for u9.
+          The full list is here: https://fr.wikipedia.org/wiki/Cat%C3%A9gorie_(sports)#Cat.C3.A9gories_en_athl.C3.A9tisme
           It's possible to have multiple age groups in a competition although this example only has one.
       -->
       <tournament-division-metadata division-name="Open">
@@ -53,13 +54,20 @@
         <sports-content-qualifier gender="male"/>
       </tournament-division-metadata>
       <!--
-          A tournament round is e.g. the first round of poules, second round of poules, first round of DE etc. There may or may not
-          be elimination after each round of poules but will be elimination after each round of DE. (Note though, plate competitions and repechage)
+          A tournament round is e.g. the first round of poules, second round of poules, first round of DE etc.
+          There may or may not be elimination after each round of poules but will be elimination after each round
+          of DE. (Note though, need to take into account plate competitions and repechage)
       -->
-      <!-- Note: is it worth splitting the stages between poules and DE? There are different rules for each (e.g. score needed to win) -->
+      <!--
+          Note: is it worth splitting the stages between poules and DE? There are different rules for each (e.g.
+          score needed to win)
+      -->
       <tournament-stage>
         <tournament-stage-metadata stage-status="post-event" stage-key="1" stage-name="Poules Round 1"/>
-        <!-- standings are the results at the END of this round, however they must come before the bouts data to conform with the schema -->
+        <!--
+            Standings are the results at the END of this round, however they must come before the bouts data to
+            conform with the schema
+        -->
         <standing content-label="Poules Round 1">
           <!-- Is this an error in the XSD? Do I really need an empty metadata element here?
                See sportsml-core.xsd Line 2982, no minOccurs attribute -->
@@ -77,9 +85,9 @@
               <sports-property formal-name="hits-scored" value="30"/>
               <sports-property formal-name="hits-received" value="6"/>
               <!-- 
-                  Indicator can be positive and negative, and is normally displayed with a leading plus(+) or minus(-) sign.
-                  Should the plus (+) sign be included here? Also, indicator can always be calculated from the two elements above,
-                  should it even be included here?
+                  Indicator can be positive and negative, and is normally displayed with a leading plus(+)
+                  or minus(-) sign. Should the plus (+) sign be included here? Also, indicator can always
+                  be calculated from the two elements above, should it even be included here?
                -->
               <sports-property formal-name="indicator" value="24"/>
             </player-stats>
@@ -132,7 +140,10 @@
         </standing>
           
         <!-- A sports event is one bout within that round -->
-        <!-- TODO: Need some way of defining which poule this is for, encoding it in the event-key just doesn't seem right. Will sports-content-code work?-->
+        <!--
+            TODO: Need some way of defining which poule this is for, encoding it in the event-key just doesn't
+            seem right. Will sports-content-code work?
+        -->
         <sports-event>
           <event-metadata start-date-time="yyyymmddThhmmss+hhmm"
             event-key="XYZ.poule-1.bout-1"
@@ -143,9 +154,9 @@
               <name last="McEwan" first="Mike" full="Mike McEwan"/>
             </player-metadata>
             <!-- In fencing the victor's score is ordinarily marked as 'V', rather than the actual score they got.
-                 This is to cope with the situation in epee where the score is 4-4 (or 14-14) and a double is scored, giving both
-                 fencers the maximum score. Another point is fenced and the winner gets 'V' and the looser 5 (or 15). This does have
-                 an impact on calculations used to determine positions. -->
+                 This is to cope with the situation in epee where the score is 4-4 (or 14-14) and a double is scored,
+                 giving both fencers the maximum score. Another point is fenced and the winner gets 'V' and the looser
+                 5 (or 15). This does have an impact on calculations used to determine positions. -->
             <player-stats score="3"/>
           </player>
           <player>
