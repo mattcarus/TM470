@@ -21,6 +21,10 @@
 % Just compile this file using pdflatex after making all required changes.
 
 \documentclass[12pt,a4paper,margin=0in]{report}
+
+\usepackage{geometry}
+\geometry{a4paper, portrait, margin=1in}
+
 \usepackage[pdftex]{graphicx} %for embedding images
 \usepackage{url} %for proper url entries
 \usepackage[bookmarks, colorlinks=false, pdfborder={0 0 0}, pdftitle={A
@@ -31,6 +35,27 @@ Computing, IT, Report, TM470}]{hyperref}
 \usepackage[final]{pdfpages} %for embedding another pdf, remove if not required
 \usepackage{listings} %for including source code
 \usepackage{color} %for including source code
+
+\usepackage{titlesec}
+ 
+\titleformat
+{\chapter} % command
+[display] % shape
+{\bfseries\Large\itshape} % format
+%{\normalfont\huge\bfseries}
+{}
+% {Part \ \thechapter} % label
+{0ex} % sep
+{
+    \rule{\textwidth}{2pt}
+    \vspace{1ex}
+    \centering
+} % before-code
+[
+\vspace{-0.5ex}%
+\rule{\textwidth}{0.3pt}
+] % after-code
+\titlespacing*{\chapter}{0pt}{-50pt}{40pt}
 
 \usepackage[round]{natbib}
 \bibliographystyle{abbrvnat}
