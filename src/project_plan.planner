@@ -1,0 +1,86 @@
+<?xml version="1.0"?>
+<project name="TM470" company="Open University" manager="Matt Carus" phase="" project-start="20160206T000000Z" mrproject-version="2" calendar="1">
+  <properties/>
+  <phases>
+    <phase name="To TMA01"/>
+    <phase name="To TMA02"/>
+    <phase name="To TMA03"/>
+    <phase name="To EMA Submission"/>
+  </phases>
+  <calendars>
+    <day-types>
+      <day-type id="0" name="Working" description="A default working day"/>
+      <day-type id="1" name="Nonworking" description="A default non working day"/>
+      <day-type id="2" name="Use base" description="Use day from base calendar"/>
+    </day-types>
+    <calendar id="1" name="Default">
+      <default-week mon="0" tue="0" wed="0" thu="0" fri="0" sat="1" sun="1"/>
+      <overridden-day-types>
+        <overridden-day-type id="0">
+          <interval start="0800" end="1200"/>
+          <interval start="1300" end="1700"/>
+        </overridden-day-type>
+      </overridden-day-types>
+      <days/>
+    </calendar>
+  </calendars>
+  <tasks>
+    <task id="1" name="TMA01 Deadline" note="" work="0" start="20160301T000000Z" end="20160301T000000Z" work-start="20160301T080000Z" percent-complete="0" priority="0" type="milestone" scheduling="fixed-work">
+      <constraint type="must-start-on" time="20160301T000000Z"/>
+    </task>
+    <task id="2" name="TMA02 Deadline" note="" work="0" start="20160412T000000Z" end="20160412T000000Z" work-start="20160412T080000Z" percent-complete="0" priority="0" type="milestone" scheduling="fixed-work">
+      <constraint type="must-start-on" time="20160412T000000Z"/>
+    </task>
+    <task id="3" name="TMA03 Deadline" note="" work="0" start="20160705T000000Z" end="20160705T000000Z" work-start="20160705T080000Z" percent-complete="0" priority="0" type="milestone" scheduling="fixed-work">
+      <constraint type="must-start-on" time="20160705T000000Z"/>
+    </task>
+    <task id="4" name="EMA Deadline" note="" work="0" start="20160912T000000Z" end="20160912T000000Z" work-start="20160912T080000Z" percent-complete="0" priority="0" type="milestone" scheduling="fixed-work">
+      <constraint type="must-start-on" time="20160912T000000Z"/>
+    </task>
+    <task id="5" name="Project Planning" note="" work="201600" start="20160206T000000Z" end="20160216T170000Z" work-start="20160208T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work"/>
+    <task id="6" name="Modelling" note="" work="806400" start="20160216T170000Z" end="20160325T170000Z" work-start="20160217T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+      <predecessors>
+        <predecessor id="1" predecessor-id="5" type="FS"/>
+      </predecessors>
+      <task id="7" name="Get ??? from BF" note="" work="201600" start="20160216T170000Z" end="20160225T170000Z" work-start="20160217T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work"/>
+      <task id="8" name="Generate project glossary" note="" work="115200" start="20160225T170000Z" end="20160302T170000Z" work-start="20160226T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+        <predecessors>
+          <predecessor id="1" predecessor-id="7" type="FS"/>
+        </predecessors>
+      </task>
+      <task id="9" name="Generate domain model" note="" work="144000" start="20160302T170000Z" end="20160309T170000Z" work-start="20160303T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+        <predecessors>
+          <predecessor id="1" predecessor-id="8" type="FS"/>
+        </predecessors>
+      </task>
+      <task id="10" name="Validate domain model with BF" note="" work="201600" start="20160309T170000Z" end="20160318T170000Z" work-start="20160310T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+        <predecessors>
+          <predecessor id="1" predecessor-id="9" type="FS"/>
+        </predecessors>
+      </task>
+      <task id="11" name="Create class diagrams" note="" work="144000" start="20160318T170000Z" end="20160325T170000Z" work-start="20160321T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+        <predecessors>
+          <predecessor id="1" predecessor-id="10" type="FS"/>
+        </predecessors>
+      </task>
+    </task>
+    <task id="12" name="Database Schema" note="" work="403200" start="20160325T170000Z" end="20160414T170000Z" work-start="20160328T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+      <predecessors>
+        <predecessor id="1" predecessor-id="6" type="FS"/>
+      </predecessors>
+    </task>
+    <task id="13" name="API" note="" work="806400" start="20160414T170000Z" end="20160524T170000Z" work-start="20160415T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+      <predecessors>
+        <predecessor id="1" predecessor-id="12" type="FS"/>
+      </predecessors>
+    </task>
+    <task id="14" name="Web Interface" note="" work="806400" start="20160524T170000Z" end="20160701T170000Z" work-start="20160525T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+      <predecessors>
+        <predecessor id="1" predecessor-id="13" type="FS"/>
+      </predecessors>
+    </task>
+  </tasks>
+  <resource-groups/>
+  <resources/>
+  <allocations/>
+</project>
