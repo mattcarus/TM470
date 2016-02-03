@@ -28,7 +28,10 @@
         <sports-content-code code-type="season" code-name="2015-16"/>
       </sports-content-codes>
     </tournament-metadata>
-    <!-- The first level of division refers to the age-group/weapon/gender of the competition -->
+    <!--
+        The first level of division refers to the age-group/weapon/gender combination of the competition
+        This is the Open, Foil, Male one
+    -->
     <tournament-division>
       <!--
           In the context of fencing, Open refers to an 'age category', others might be u15, u17, veteran etc.
