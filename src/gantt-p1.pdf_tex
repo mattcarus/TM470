@@ -1,6 +1,6 @@
 %% Creator: Inkscape inkscape 0.48.4, www.inkscape.org
 %% PDF/EPS/PS + LaTeX output extension by Johan Engelen, 2010
-%% Accompanies image file 'gantt.pdf' (pdf, eps, ps)
+%% Accompanies image file 'gantt-p1.pdf' (pdf, eps, ps)
 %%
 %% To include the image in your LaTeX document, write
 %%   \input{<filename>.pdf_tex}
@@ -35,5 +35,20 @@
     \renewcommand\transparent[1]{}%
   }%
   \providecommand\rotatebox[2]{#2}%
+  \ifx\svgwidth\undefined%
+    \setlength{\unitlength}{537.18748857bp}%
+    \ifx\svgscale\undefined%
+      \relax%
+    \else%
+      \setlength{\unitlength}{\unitlength * \real{\svgscale}}%
+    \fi%
+  \else%
+    \setlength{\unitlength}{\svgwidth}%
+  \fi%
+  \global\let\svgwidth\undefined%
+  \global\let\svgscale\undefined%
+  \makeatother%
+  \begin{picture}(1,1.50063991)%
+    \put(0,0){\includegraphics[width=\unitlength]{gantt-p1.pdf}}%
   \end{picture}%
 \endgroup%
