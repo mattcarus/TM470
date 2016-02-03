@@ -37,7 +37,7 @@
           In the context of fencing, Open refers to an 'age category', others might be u15, u17, veteran etc.
           Younger age categories may also be referred to by a french name such as 'poussin' for u9.
           The full list is here: https://fr.wikipedia.org/wiki/Cat%C3%A9gorie_(sports)#Cat.C3.A9gories_en_athl.C3.A9tisme
-          It's possible to have multiple age groups in a competition although this example only has one.
+          It is possible to have multiple age groups in a competition although this example only has one.
       -->
       <tournament-division-metadata division-name="Open">
         <!--
@@ -141,7 +141,7 @@
           
         <!-- A sports event is one bout within that round -->
         <!--
-            TODO: Need some way of defining which poule this is for, encoding it in the event-key just doesn't
+            TODO: Need some way of defining which poule this is for, encoding it in the event-key just doesn`t
             seem right. Will sports-content-code work?
         -->
         <sports-event>
@@ -153,7 +153,7 @@
             <player-metadata player-key="fencing.fencer:519" team-key="fencing.club:26" team-idref="SALLH">
               <name last="McEwan" first="Mike" full="Mike McEwan"/>
             </player-metadata>
-            <!-- In fencing the victor's score is ordinarily marked as 'V', rather than the actual score they got.
+            <!-- In fencing the victor`s score is ordinarily marked as 'V', rather than the actual score they got.
                  This is to cope with the situation in epee where the score is 4-4 (or 14-14) and a double is scored,
                  giving both fencers the maximum score. Another point is fenced and the winner gets 'V' and the looser
                  5 (or 15). This does have an impact on calculations used to determine positions. -->
@@ -195,7 +195,7 @@
         <tournament-stage-metadata stage-status="post-event" stage-key="2" stage-name="DE Last 32"/>
         <!--
             These are the standings at the END of this round of DE, as such fencers that have already been
-            eliminated will not change position (i.e. if we're at the quarter final, 8 fencers are left in
+            eliminated will not change position (i.e. if we`re at the quarter final, 8 fencers are left in
             the competition so their positions can change, but everything from 9 down will be the same as
             it was for the last round.
         -->
