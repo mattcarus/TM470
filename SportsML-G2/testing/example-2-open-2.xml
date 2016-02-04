@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<?xml-stylesheet type="text/xsl" href="sportsml-html.xsl"?>
+<sports-content xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns="http://iptc.org/std/SportsML/2008-04-01/"
+  >
+  <!--
+      This sample competition is loosely based on the data available in human-readable format at
+        http://www.britishfencing.com/uploads/files/scottish_open_2016_mens_foil.htm
+      
+      Ignore all IDs and timestamps - these are made up for this example
+      
+      Many of the repeated sections are omitted for brevity
+      
+      The data is not necessarily consistent, no weight should be given to the actual values, these
+      are representative only. 
+  -->
+  <sports-metadata doc-id="XYZ">
+    <sports-title>Scottish Open</sports-title>
+  </sports-metadata>
+  <tournament>
+    <tournament-metadata tournament-status="post-event" tournament-name="Scottish Open">
+      <site>
+        <site-metadata>
+          <home-location country="UK" city="Edinburgh"/>
+        </site-metadata>
+      </site>
+      <sports-content-codes>
+        <!-- Fencing seasons follow the UK academic year, running from Sept 1st to Aug 31st the following year -->
+        <sports-content-code code-type="season" code-name="2015-16"/>
+      </sports-content-codes>
+    </tournament-metadata>
+    <!--
+        The first level of division refers to the age-group/weapon/gender combination of the competition
+        This is the Open, Foil, Male one
+    -->
+    <tournament-division>
+      <!--
+          In the context of fencing, Open refers to an 'age category', others might be u15, u17, veteran etc.
+          Younger age categories may also be referred to by a french name such as 'poussin' for u9.
+          The full list is here: https://fr.wikipedia.org/wiki/Cat%C3%A9gorie_(sports)#Cat.C3.A9gories_en_athl.C3.A9tisme
+          It is possible to have multiple age groups in a competition although this example only has one.
+      -->
+      <tournament-division-metadata division-name="Open">
+        <sports-content-codes>
+          <sports-content-code code-type="sport-category" code-key="foil" code-name="Foil"/>
+        </sports-content-codes>
+        <sports-content-qualifier gender="male"/>
+      </tournament-division-metadata>
+      <!--
+          A tournament round is e.g. the first round of poules, second round of poules, first round of DE etc.
+          There may or may not be elimination after each round of poules but will be elimination after each round
+          of DE. (Note though, need to take into account plate competitions and repechage)
+      -->
+      <!--
+          Note: is it worth splitting the stages between poules and DE? There are different rules for each (e.g.
+          score needed to win)
+      -->
+      <tournament-stage>
+        <tournament-stage-metadata stage-status="post-event" stage-key="1" stage-name="Poules Round 1"/>
+        <!--
+            Standings are the results at the END of this round, however they must come before the bouts data to
+            conform with the schema
+        -->
+        <standing content-label="Poules Round 1">
+          <!-- Is this an error in the XSD? Do I really need an empty metadata element here?
+               See sportsml-core.xsd Line 2982, no minOccurs attribute -->
+          <standing-metadata/>
+          
+          <player>
+            <player-metadata player-key="fencing.fencer:1" team-key="fencing.club:1" team-idref="HOLY">
+              <name last="Cook" first="Keith" full="Keith Cook"/>
+              <home-location country="GBR"/>
+            </player-metadata>
+            <player-stats>
+              <outcome-totals wins="6" winning-percentage="100" points-scored-for="30" points-scored-against="6"/>
+              <rank value="1"/>
+            </player-stats>
+          </player>
+          
+          <player>
+            <player-metadata player-key="fencing.fencer:23" team-key="fencing.club:23" team-idref="WALL">
+              <name last="Woollard" first="Jonathan" full="Jonathan Woollard"/>
+              <home-location country="GBR"/>
+            </player-metadata>
+            <player-stats>
+              <outcome-totals wins="5" winning-percentage="100" points-scored-for="25" points-scored-against="3"/>
+              <rank value="2"/>
+            </player-stats>
+          </player>
+          
+          <player>
+            <player-metadata player-key="fencing.fencer:24" team-key="fencing.club:24" team-idref="SALEH">
+              <name last="Russell" first="Iain" full="Iain Russell"/>
+              <home-location country="GBR"/>
+            </player-metadata>
+            <player-stats>
+              <outcome-totals wins="5" winning-percentage="100" points-scored-for="25" points-scored-against="7"/>
+              <rank value="3"/>
+            </player-stats>
+          </player>
+          
+          <player>
+            <player-metadata player-key="fencing.fencer:26" team-key="fencing.club:26" team-idref="SALLH">
+              <name last="Douglas" first="Jack" full="Jack Douglas"/>
+            </player-metadata>
+            <player-stats>
+              <outcome-totals wins="5" winning-percentage="100" points-scored-for="25" points-scored-against="9"/>
+              <rank value="4"/>
+            </player-stats>
+          </player>
+          <!-- Other fencers omitted for brevity -->
+        </standing>
+          
+        <!-- A sports event is one bout within that round -->
+        <!--
+            TODO: Need some way of defining which poule this is for, encoding it in the event-key just doesn`t
+            seem right. Will sports-content-code work?
+        -->
+        <sports-event>
+          <event-metadata start-date-time="yyyymmddThhmmss+hhmm"
+            event-key="XYZ.poule-1.bout-1"
+            event-name="Scottish Open Mens Foil 2016"
+            date-coverage-type="event" event-status="post-event" season-key="2015-16"/>
+          <player>
+            <player-metadata player-key="fencing.fencer:519" team-key="fencing.club:26" team-idref="SALLH">
+              <name last="McEwan" first="Mike" full="Mike McEwan"/>
+            </player-metadata>
+            <!-- In fencing the victor`s score is ordinarily marked as 'V', rather than the actual score they got.
+                 This is to cope with the situation in epee where the score is 4-4 (or 14-14) and a double is scored,
+                 giving both fencers the maximum score. Another point is fenced and the winner gets 'V' and the looser
+                 5 (or 15). This does have an impact on calculations used to determine positions. -->
+            <player-stats score="3"/>
+          </player>
+          <player>
+            <player-metadata player-key="fencing.fencer:16275" team-key="fencing.club:26" team-idref="SALLH">
+              <name last="Bradie" first="Angus" full="Angus Bradie"/>
+            </player-metadata>
+            <player-stats score="V"/>
+          </player>
+        </sports-event>
+        
+        <sports-event>
+          <event-metadata start-date-time="yyyymmddThhmmss+hhmm"
+            event-key="XYZ.poule-1.bout-2"
+            event-name="Scottish Open Mens Foil 2016"
+            date-coverage-type="event" event-status="post-event" season-key="2015-16"/>
+          <player>
+            <player-metadata player-key="fencing.fencer:519" team-key="fencing.club:26" team-idref="SALLH">
+              <name last="McEwan" first="Mike" full="Mike McEwan"/>
+            </player-metadata>
+            <player-stats score="V"/>
+          </player>
+          <player>
+            <player-metadata player-key="fencing.fencer:16275" team-key="fencing.club:26" team-idref="SALLH">
+              <name last="Crawford" first="Angus" full="Angus Crawford"/>
+            </player-metadata>
+            <player-stats score="0"/>
+          </player>
+        </sports-event>
+        
+        <!-- other bouts omitted for brevity -->
+      </tournament-stage>
+      
+      <!-- This particular competition only had one round of poules so the next round is the DE -->
+      <tournament-stage>
+        <!-- This is an example of a DE round -->
+        <tournament-stage-metadata stage-status="post-event" stage-key="2" stage-name="DE Last 32"/>
+        <!--
+            These are the standings at the END of this round of DE, as such fencers that have already been
+            eliminated will not change position (i.e. if we`re at the quarter final, 8 fencers are left in
+            the competition so their positions can change, but everything from 9 down will be the same as
+            it was for the last round.
+        -->
+        <standing content-label="Semi-Final">
+          <standing-metadata/>
+          
+          <player>
+            <player-metadata player-key="fencing.fencer:1" team-key="fencing.club:1" team-idref="HOLY">
+              <name last="Cook" first="Keith" full="Keith Cook"/>
+              <home-location country="GBR"/>
+            </player-metadata>
+            <player-stats>
+              <rank value="1"/>
+            </player-stats>
+          </player>
+          
+          <player>
+            <player-metadata player-key="fencing.fencer:23" team-key="fencing.club:23" team-idref="WALL">
+              <name last="Woollard" first="Jonathan" full="Jonathan Woollard"/>
+              <home-location country="GBR"/>
+            </player-metadata>
+            <player-stats>
+              <rank value="2"/>
+            </player-stats>
+          </player>
+          
+          <player>
+            <player-metadata player-key="fencing.fencer:24" team-key="fencing.club:24" team-idref="SALEH">
+              <name last="Russell" first="Iain" full="Iain Russell"/>
+              <home-location country="GBR"/>
+            </player-metadata>
+            <player-stats>
+              <rank value="3"/>
+            </player-stats>
+          </player>
+          
+          <player>
+            <player-metadata player-key="fencing.fencer:26" team-key="fencing.club:26" team-idref="SALLH">
+              <name last="Douglas" first="Jack" full="Jack Douglas"/>
+            </player-metadata>
+            <player-stats>
+              <rank value="4"/>
+            </player-stats>
+          </player>
+          <!-- Other fencers omitted for brevity -->
+          
+        </standing>
+        
+        <sports-event>
+          <event-metadata start-date-time="yyyymmddThhmmss+hhmm"
+            event-key="XYZ.de-last16.bout-1"
+            event-name="Scottish Open Mens Foil 2016"
+            date-coverage-type="event" event-status="post-event" season-key="2015-16"/>
+          <player>
+            <player-metadata player-key="fencing.fencer:1" team-key="fencing.club:1" team-idref="HOLY">
+              <name last="Cook" first="Keith" full="Keith Cook"/>
+              <home-location country="GBR"/>
+            </player-metadata>
+            <player-stats score="V"/>
+          </player>
+          <player>
+            <player-metadata player-key="fencing.fencer:26" team-key="fencing.club:26" team-idref="SALLH">
+              <name last="Douglas" first="Jack" full="Jack Douglas"/>
+            </player-metadata>
+            <player-stats score="10"/>
+          </player>
+        </sports-event>
+
+        <sports-event>
+          <event-metadata start-date-time="yyyymmddThhmmss+hhmm"
+            event-key="XYZ.de-last16.bout-1"
+            event-name="Scottish Open Mens Foil 2016"
+            date-coverage-type="event" event-status="post-event" season-key="2015-16"/>
+          <player>
+            <player-metadata player-key="fencing.fencer:23" team-key="fencing.club:23" team-idref="WALL">
+              <name last="Woollard" first="Jonathan" full="Jonathan Woollard"/>
+              <home-location country="GBR"/>
+            </player-metadata>
+            <player-stats score="3"/>
+          </player>
+          <player>
+            <player-metadata player-key="fencing.fencer:24" team-key="fencing.club:24" team-idref="SALEH">
+              <name last="Russell" first="Iain" full="Iain Russell"/>
+              <home-location country="GBR"/>
+            </player-metadata>
+            <player-stats score="V"/>
+          </player>
+        </sports-event>
+
+        <!-- Semi-final so only two bouts -->
+        
+      </tournament-stage>
+      <!-- Final would feature here, along with the final standing that is the overall result of the competition. -->
+      
+    </tournament-division>
+    <!--
+        Additional tournament-division elements would feature here, in this particular competition they would be for:
+        Womens Foil
+        Mens Epee
+        Womens Epee
+        Mens Sabre
+        Womens Sabre
+    -->
+  </tournament>
+</sports-content>

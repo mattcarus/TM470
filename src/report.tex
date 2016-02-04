@@ -36,6 +36,8 @@ Computing, IT, Report, TM470}]{hyperref}
 \usepackage{listings} %for including source code
 \usepackage{color} %for including source code
 
+\usepackage[toc,page]{appendix}
+
 \usepackage{titlesec}
  
 \titleformat
@@ -50,6 +52,7 @@ Computing, IT, Report, TM470}]{hyperref}
     \rule{\textwidth}{2pt}
     \vspace{1ex}
     \centering
+    \thechapter\quad
 } % before-code
 [
 \vspace{-0.5ex}%
@@ -60,6 +63,8 @@ Computing, IT, Report, TM470}]{hyperref}
 \usepackage[round]{natbib}
 \bibliographystyle{abbrvnat}
 \setcitestyle{authoryear,open={(},close={)}}
+
+\usepackage{csquotes}
 
 \begin{document}
 \renewcommand\bibname{References} %Renames "Bibliography" to "References" on ref page
@@ -78,7 +83,9 @@ Computing, IT, Report, TM470}]{hyperref}
 
 \input{prob-definition} %objective changed to problem definition
 % \input{introduction} %literature survey included in this
+\input{goals}
 \input{project-plan}
+\input{research}
 \input{models}
 \input{work-done}
 \input{source-code}
@@ -87,5 +94,10 @@ Computing, IT, Report, TM470}]{hyperref}
 \input{ref}
 
 \bibliography{references}
+
+\begin{appendices}
+\input{appendix-sample-fencing-xml}
+\input{appendix-sample-fencing-sportsml}
+\end{appendices}
 
 \end{document}

@@ -1,0 +1,48 @@
+\chapter{Project Goals} \label{goals}
+
+The goal of this project is to produce a working system that meets 
+requirements that will later be identified. The system will be designed and
+built using the knowledge that I have built up during the course of my Open
+University studies. As such it is likely to be designed using UML and
+implemented using Java. The specific elements that I will deliver will be as
+follows:
+\begin{itemize}
+  \item Output from the modelling phase of the project. This will include
+  a domain model, class models etc.
+  \item A database schema, designed to best practices, that will be used to
+  store all of the relevant information derived from the modelling exercise.
+  \item A working database implementing the database schema, populated with real
+  data.
+  \item An API to the database such that data can be added to the database and
+  data already in the database can be retrieved. The API should use standard
+  data formats for accepting data and for presenting it. This API should be
+  designed in such a way that it can be extended in the future to allow for
+  other operations (for example updating data already in the database, searching for data etc.)
+  \item A web interface to allow viewing of the data held within the database.
+\end{itemize}
+Some activities will specifically be excluded from the scope of the project.
+This is primarily due to time constraints but also to properly complete the
+activities would require more knowledge than I have gained during the course of
+my studies. If during the course of my research and development work it becomes
+evident that this can be added in a trivial manner then they may later be
+re-introduced into the scope of the project. These are:
+\begin{itemize}
+  \item API Security. It is anticipated that I will not implement access control
+  on the API. A live deployment of the API will either require that
+  authentication be added or an application firewall be utilised to only permit
+  certain operations.
+  \item Web interface to advanced operations. It is accepted that the web
+  interface will only allow viewing of the data exposed by the API. In order to
+  add data to the database the API will be used directly, rather than via a web
+  interface.
+\end{itemize}
+Aside from the domain research needed for the modelling phase and associated
+requirements generation, the following additional research tasks have been
+identified:
+\begin{enumerate}
+  \item Research into the data formats that will be used to populate the
+  database via the API, and the desired output formats from the API.
+\end{enumerate}
+The output of this research is presented in section \ref{research} beginning on
+page
+\pageref{research}
