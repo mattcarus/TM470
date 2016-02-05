@@ -112,15 +112,15 @@
         </standing>
           
         <!-- A sports event is one bout within that round -->
-        <!--
-            TODO: Need some way of defining which poule this is for, encoding it in the event-key just doesn`t
-            seem right. Will sports-content-code work?
-        -->
+        <!-- Note that the 'heat-number' attribute is actually the poule number and will be non-unique -->
         <sports-event>
           <event-metadata start-date-time="yyyymmddThhmmss+hhmm"
             event-key="XYZ.poule-1.bout-1"
             event-name="Scottish Open Mens Foil 2016"
-            date-coverage-type="event" event-status="post-event" season-key="2015-16"/>
+            heat-number="1"
+            date-coverage-type="event"
+            event-status="post-event"
+            season-key="2015-16"/>
           <player>
             <player-metadata player-key="fencing.fencer:519" team-key="fencing.club:26" team-idref="SALLH">
               <name last="McEwan" first="Mike" full="Mike McEwan"/>
@@ -143,7 +143,10 @@
           <event-metadata start-date-time="yyyymmddThhmmss+hhmm"
             event-key="XYZ.poule-1.bout-2"
             event-name="Scottish Open Mens Foil 2016"
-            date-coverage-type="event" event-status="post-event" season-key="2015-16"/>
+            heat-number="1"
+            date-coverage-type="event"
+            event-status="post-event"
+            season-key="2015-16"/>
           <player>
             <player-metadata player-key="fencing.fencer:519" team-key="fencing.club:26" team-idref="SALLH">
               <name last="McEwan" first="Mike" full="Mike McEwan"/>

@@ -1,0 +1,70 @@
+\chapter{Research} \label{research}
+
+\section{Data Formats}
+From speaking to Katie Rhodes (British Fencing) and to other competition
+organisers, it has become clear that one of two pieces of software are used to
+organise fencing competitions. These are called \textit{Engarde} and
+\textit{Fencing Time}. Both programs have the ability to output XML files
+detailing the results of the competition \citep{engardewebsite} and
+\citep{fencingtimewebsite}. XML samples from each program are supplied in
+Appendix \ref{appendix-sample-fencing-xml} on page
+\pageref{appendix-sample-fencing-xml}. Clearly, the two programs use different
+formats.
+
+For the output format from the API, it would be possible to re-use one
+(or both) of these two formats, or a different format could be used. If a
+different format is chosen then it could either be a format that I create
+specifically for this system, or it could be a format published elsewhere.
+Further internet-based research has indicated that there are standards in
+existence for representing sports data. One such standard is known as SportsML,
+the current version of which (as of Feb 2016) is SportsML-G2. This standard is
+defined by the \textit{International Press Telecommunications Council (IPTC)}. I
+contacted the IPTC via their developer forums to ask if fencing data could be
+represented in SportsML format and the response was that it should be able to be
+represented but no-one was aware of anyone currently using SportsML for fencing
+data. Two interesting responses were received from the initial posting, one from
+Steve Potts at the \textit{BBC} and another from Jean F\`{e}vre of
+\textit{L'Agence France-Presse (AFP)}.\\
+Steve Potts, in an email to me stated that the BBC did use SportsML as their
+favoured format for receiving data, he also stated:
+\begin{displayquote}
+The BBC are interested in the concept of local generated
+sports stats (compare with user generated, which it is not), and also in publishing stats for
+lesser-participated sports. The effort we expend in obtaining and publishing
+stats is naturally weighted towards the more popular sports, so we are
+investigating opening channels (with a lower barrier to entry) of sports stats
+ingest from outside our primary suppliers. Fencing isn't included in our
+supplier contracts, so creating a vocabulary for it removes one barrier for us
+to publish its stats. Our ideal scenario is for us to ingest a routine automated
+SportsML feed from British Fencing for fixtures, results and standings to appear
+across the BBC Website, Mobile App, Red Button TV, Connected TV.
+\citep{pottsemail20160202}
+\end{displayquote}
+From this I take that the BBC would be interested in integrating with the system
+I am to build in order to receive data automatically from British Fencing. This
+is something the British Fencing are quite excited about! Conversely, Jean
+F\`{e}vre, again in an email, states:
+\begin{displayquote}
+I am in SportML group since long time but I don’t like SportML too much because
+it’s very complex and it must be adapted to each sport.
+I work with IOC on Olympic Games since very long time (1988) and we (IOC, ASOIF,
+many international federations…) have defined ODF XML format.
+For Rio games we will receive ODF 2. \citep{ferveemail20160203}
+\end{displayquote}
+After studying at the two formats, I would dispute F\`{e}vre's assertion that
+SportsML is very complex - I understood it more quickly than the ODF format.
+It is clear that there are two competing formats and it makes sense for me to
+decide to support primarily one format, with support for the second being made
+possible if it is able to be added.
+One outstanding issue I had to face before making a decision on my primary data
+format was that of whether or not SportsML would actually support fencing data
+or not. As suggested by members of the SportML development group, I decided to
+jump in at the deep end and actually produce a valid SportsML file with fencing
+data in it. This file is available in Appendix
+\ref{appendix-sample-fencing-sportsml} on page
+\pageref{appendix-sample-fencing-sportsml} I made a copy of this file available
+to the SportsML group for their comments, which were supportive. There remained
+a small issue of embedding the weapon used for a particular competition in the
+format (something that is not taken care of in the core SportsML standard) but
+I'm confident that a solution can be found for that as the standard is easily
+extensible.
