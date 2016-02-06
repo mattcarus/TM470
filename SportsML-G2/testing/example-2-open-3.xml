@@ -51,10 +51,6 @@
           There may or may not be elimination after each round of poules but will be elimination after each round
           of DE. (Note though, need to take into account plate competitions and repechage)
       -->
-      <!--
-          Note: is it worth splitting the stages between poules and DE? There are different rules for each (e.g.
-          score needed to win)
-      -->
       <tournament-stage>
         <tournament-stage-metadata stage-status="post-event" stage-key="1" stage-name="Poules Round 1"/>
         <!--
@@ -76,6 +72,15 @@
                 <name last="Cook" first="Keith" full="Keith Cook"/>
                 <home-location country="GBR"/>
               </player-metadata>
+              <!-- 
+                  Here, 'proceed' means that a fencer will proceed to the next round (stage) of the tournament
+                  'eliminated' means that they no not proceed and their competition is over.
+                  
+                  Should proceed/eliminated be proceeded/eliminated or proceed/eliminate to keep cases consistent?
+                  Or is this difference ok?
+                  
+                  Note that it is the player that proceeds, not the team.
+              -->
               <player-stats>
                 <outcome-totals wins="6" winning-percentage="100" points-scored-for="30" points-scored-against="6"/>
                 <rank value="1"/>
@@ -106,18 +111,18 @@
             </team-metadata>
             <team-stats/>
             <player>
-            <player-metadata player-key="fencing.fencer:24" team-key="fencing.club:24" team-idref="WFIFE">
-              <name last="Russell" first="Iain" full="Iain Russell"/>
-              <home-location country="GBR"/>
-            </player-metadata>
-            <player-stats>
-              <outcome-totals wins="5" winning-percentage="100" points-scored-for="25" points-scored-against="7"/>
-              <rank value="2"/>
-            </player-stats>
+              <player-metadata player-key="fencing.fencer:24" team-key="fencing.club:24" team-idref="WFIFE">
+                <name last="Russell" first="Iain" full="Iain Russell"/>
+                <home-location country="GBR"/>
+              </player-metadata>
+              <player-stats>
+                <outcome-totals wins="5" winning-percentage="100" points-scored-for="25" points-scored-against="7"/>
+                <rank value="2"/>
+              </player-stats>
             </player>
 
             <player>
-              <player-metadata player-key="fencing.fencer:26" team-key="fencing.club:26" team-idref="SALLH">
+              <player-metadata player-key="fencing.fencer:26" team-key="fencing.club:26" team-idref="WFIFE">
                 <name last="Douglas" first="Jack" full="Jack Douglas"/>
               </player-metadata>
               <player-stats>
@@ -139,22 +144,29 @@
             date-coverage-type="event"
             event-status="post-event"
             season-key="2015-16"/>
-          <player>
-            <player-metadata player-key="fencing.fencer:519" team-key="fencing.club:26" team-idref="SALLH">
-              <name last="McEwan" first="Mike" full="Mike McEwan"/>
-            </player-metadata>
-            <!-- In fencing the victor`s score is ordinarily marked as 'V', rather than the actual score they got.
-                 This is to cope with the situation in epee where the score is 4-4 (or 14-14) and a double is scored,
-                 giving both fencers the maximum score. Another point is fenced and the winner gets 'V' and the looser
-                 5 (or 15). This does have an impact on calculations used to determine positions. -->
-            <player-stats score="3"/>
-          </player>
-          <player>
-            <player-metadata player-key="fencing.fencer:16275" team-key="fencing.club:26" team-idref="SALLH">
-              <name last="Bradie" first="Angus" full="Angus Bradie"/>
-            </player-metadata>
-            <player-stats score="V"/>
-          </player>
+          <team>
+            <team-metadata team-key="HOLY" home-page-url="http://example.com">
+              <name full="Holyrood" abbreviation="HOLY"/>
+            </team-metadata>
+            <team-stats score="3" event-outcome="loss"/>
+            <player>
+              <player-metadata player-key="fencing.fencer:519" team-key="fencing.club:26" team-idref="HOLY">
+                <name last="McEwan" first="Mike" full="Mike McEwan"/>
+              </player-metadata>
+            </player>
+          </team>
+          
+          <team>
+            <team-metadata team-key="HOLY" home-page-url="http://example.com">
+              <name full="Holyrood" abbreviation="HOLY"/>
+            </team-metadata>
+            <team-stats score="5" event-outcome="win"/>
+            <player>
+              <player-metadata player-key="fencing.fencer:16275" team-key="fencing.club:26" team-idref="HOLY">
+                <name last="Bradie" first="Angus" full="Angus Bradie"/>
+              </player-metadata>
+            </player>
+          </team>
         </sports-event>
         
         <sports-event>
@@ -165,27 +177,38 @@
             date-coverage-type="event"
             event-status="post-event"
             season-key="2015-16"/>
-          <player>
-            <player-metadata player-key="fencing.fencer:519" team-key="fencing.club:26" team-idref="SALLH">
-              <name last="McEwan" first="Mike" full="Mike McEwan"/>
-            </player-metadata>
-            <player-stats score="V"/>
-          </player>
-          <player>
-            <player-metadata player-key="fencing.fencer:16275" team-key="fencing.club:26" team-idref="SALLH">
-              <name last="Crawford" first="Angus" full="Angus Crawford"/>
-            </player-metadata>
-            <player-stats score="0"/>
-          </player>
+          <team>
+            <team-metadata team-key="HOLY" home-page-url="http://example.com">
+              <name full="Holyrood" abbreviation="HOLY"/>
+            </team-metadata>
+            <team-stats score="5" event-outcome="win"/>
+            <player>
+              <player-metadata player-key="fencing.fencer:519" team-key="fencing.club:26" team-idref="SALLH">
+                <name last="McEwan" first="Mike" full="Mike McEwan"/>
+              </player-metadata>
+            </player>
+          </team>
+          
+          <team>
+            <team-metadata team-key="WALL" home-page-url="http://example.com">
+              <name full="Wallace Fencing Academy" abbreviation="WALL"/>
+            </team-metadata>
+            <team-stats score="0" event-outcome="loss"/>
+            <player>
+              <player-metadata player-key="fencing.fencer:16275" team-key="fencing.club:26" team-idref="WALL">
+                <name last="Crawford" first="Angus" full="Angus Crawford"/>
+              </player-metadata>
+            </player>
+          </team>
         </sports-event>
-        
+
         <!-- other bouts omitted for brevity -->
       </tournament-stage>
       
       <!-- This particular competition only had one round of poules so the next round is the DE -->
       <tournament-stage>
         <!-- This is an example of a DE round -->
-        <tournament-stage-metadata stage-status="post-event" stage-key="2" stage-name="DE Last 32"/>
+        <tournament-stage-metadata stage-status="post-event" stage-key="2" stage-name="DE Last 4"/>
         <!--
             These are the standings at the END of this round of DE, as such fencers that have already been
             eliminated will not change position (i.e. if we`re at the quarter final, 8 fencers are left in
@@ -195,46 +218,63 @@
         <standing content-label="Semi-Final">
           <standing-metadata/>
           
-          <player>
-            <player-metadata player-key="fencing.fencer:1" team-key="fencing.club:1" team-idref="HOLY">
-              <name last="Cook" first="Keith" full="Keith Cook"/>
-              <home-location country="GBR"/>
-            </player-metadata>
-            <player-stats>
-              <rank value="1"/>
-            </player-stats>
-          </player>
+          <team>
+            <team-metadata team-key="HOLY" home-page-url="http://example.com">
+              <name full="Holyrood" abbreviation="HOLY"/>
+            </team-metadata>
+            <team-stats/>
+            <player>
+              <player-metadata player-key="fencing.fencer:1" team-key="fencing.club:1" team-idref="HOLY">
+                <name last="Cook" first="Keith" full="Keith Cook"/>
+                <home-location country="GBR"/>
+              </player-metadata>
+              <player-stats>
+                <rank value="1"/>
+              </player-stats>
+            </player>
+          </team>
           
-          <player>
-            <player-metadata player-key="fencing.fencer:23" team-key="fencing.club:23" team-idref="WALL">
-              <name last="Woollard" first="Jonathan" full="Jonathan Woollard"/>
-              <home-location country="GBR"/>
-            </player-metadata>
-            <player-stats>
-              <rank value="2"/>
-            </player-stats>
-          </player>
-          
-          <player>
-            <player-metadata player-key="fencing.fencer:24" team-key="fencing.club:24" team-idref="SALEH">
-              <name last="Russell" first="Iain" full="Iain Russell"/>
-              <home-location country="GBR"/>
-            </player-metadata>
-            <player-stats>
-              <rank value="3"/>
-            </player-stats>
-          </player>
-          
-          <player>
-            <player-metadata player-key="fencing.fencer:26" team-key="fencing.club:26" team-idref="SALLH">
-              <name last="Douglas" first="Jack" full="Jack Douglas"/>
-            </player-metadata>
-            <player-stats>
-              <rank value="4"/>
-            </player-stats>
-          </player>
+          <team>
+            <team-metadata team-key="WALL" home-page-url="http://example.com">
+              <name full="Wallace Fencing Academy" abbreviation="WALL"/>
+            </team-metadata>
+            <team-stats/>
+            <player>
+              <player-metadata player-key="fencing.fencer:23" team-key="fencing.club:23" team-idref="WALL">
+                <name last="Woollard" first="Jonathan" full="Jonathan Woollard"/>
+                <home-location country="GBR"/>
+              </player-metadata>
+              <player-stats>
+                <rank value="3"/>
+              </player-stats>
+            </player>
+          </team>
+
+          <team>
+            <team-metadata team-key="WFIFE" home-page-url="http://example.com">
+              <name full="West Fife Fencing Club" abbreviation="WFIFE"/>
+            </team-metadata>
+            <team-stats/>
+            <player>
+              <player-metadata player-key="fencing.fencer:24" team-key="fencing.club:24" team-idref="WFIFE">
+                <name last="Russell" first="Iain" full="Iain Russell"/>
+                <home-location country="GBR"/>
+              </player-metadata>
+              <player-stats>
+                <rank value="2"/>
+              </player-stats>
+            </player>
+
+            <player>
+              <player-metadata player-key="fencing.fencer:26" team-key="fencing.club:26" team-idref="WFIFE">
+                <name last="Douglas" first="Jack" full="Jack Douglas"/>
+              </player-metadata>
+              <player-stats>
+                <rank value="4"/>
+              </player-stats>
+            </player>
+          </team>
           <!-- Other fencers omitted for brevity -->
-          
         </standing>
         
         <sports-event>
@@ -242,19 +282,30 @@
             event-key="XYZ.de-last16.bout-1"
             event-name="Scottish Open Mens Foil 2016"
             date-coverage-type="event" event-status="post-event" season-key="2015-16"/>
-          <player>
-            <player-metadata player-key="fencing.fencer:1" team-key="fencing.club:1" team-idref="HOLY">
-              <name last="Cook" first="Keith" full="Keith Cook"/>
-              <home-location country="GBR"/>
-            </player-metadata>
-            <player-stats score="V"/>
-          </player>
-          <player>
-            <player-metadata player-key="fencing.fencer:26" team-key="fencing.club:26" team-idref="SALLH">
-              <name last="Douglas" first="Jack" full="Jack Douglas"/>
-            </player-metadata>
-            <player-stats score="10"/>
-          </player>
+          <team>
+            <team-metadata team-key="HOLY" home-page-url="http://example.com">
+              <name full="Holyrood" abbreviation="HOLY"/>
+            </team-metadata>
+            <team-stats score="15" event-outcome="win"/>
+            <player>
+              <player-metadata player-key="fencing.fencer:1" team-key="fencing.club:1" team-idref="HOLY">
+                <name last="Cook" first="Keith" full="Keith Cook"/>
+                <home-location country="GBR"/>
+              </player-metadata>
+            </player>
+          </team>
+          
+          <team>
+            <team-metadata team-key="WFIFE" home-page-url="http://example.com">
+              <name full="West Fife Fencing Club" abbreviation="WFIFE"/>
+            </team-metadata>
+            <team-stats score="10" event-outcome="loss"/>
+            <player>
+              <player-metadata player-key="fencing.fencer:26" team-key="fencing.club:26" team-idref="WFIFE">
+                <name last="Douglas" first="Jack" full="Jack Douglas"/>
+              </player-metadata>
+            </player>
+          </team>
         </sports-event>
 
         <sports-event>
@@ -262,20 +313,31 @@
             event-key="XYZ.de-last16.bout-1"
             event-name="Scottish Open Mens Foil 2016"
             date-coverage-type="event" event-status="post-event" season-key="2015-16"/>
-          <player>
-            <player-metadata player-key="fencing.fencer:23" team-key="fencing.club:23" team-idref="WALL">
-              <name last="Woollard" first="Jonathan" full="Jonathan Woollard"/>
-              <home-location country="GBR"/>
-            </player-metadata>
-            <player-stats score="3"/>
-          </player>
-          <player>
-            <player-metadata player-key="fencing.fencer:24" team-key="fencing.club:24" team-idref="SALEH">
-              <name last="Russell" first="Iain" full="Iain Russell"/>
-              <home-location country="GBR"/>
-            </player-metadata>
-            <player-stats score="V"/>
-          </player>
+          <team>
+            <team-metadata team-key="WALL" home-page-url="http://example.com">
+              <name full="Wallace Fencing Academy" abbreviation="WALL"/>
+            </team-metadata>
+            <team-stats score="3" event-outcome="loss"/>
+            <player>
+              <player-metadata player-key="fencing.fencer:23" team-key="fencing.club:23" team-idref="WALL">
+                <name last="Woollard" first="Jonathan" full="Jonathan Woollard"/>
+                <home-location country="GBR"/>
+              </player-metadata>
+            </player>
+          </team>
+          
+          <team>
+            <team-metadata team-key="WFIFE" home-page-url="http://example.com">
+              <name full="West Fife Fencing Club" abbreviation="WFIFE"/>
+            </team-metadata>
+            <team-stats score="15" event-outcome="win"/>
+            <player>
+              <player-metadata player-key="fencing.fencer:24" team-key="fencing.club:24" team-idref="WFIFE">
+                <name last="Russell" first="Iain" full="Iain Russell"/>
+                <home-location country="GBR"/>
+              </player-metadata>
+            </player>
+          </team>
         </sports-event>
 
         <!-- Semi-final so only two bouts -->
