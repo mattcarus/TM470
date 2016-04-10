@@ -1,0 +1,8 @@
+Hello, I'm an Open University student in the UK studying Computing and IT, and for my final year project I'm working with British Fencing to build a system to manage the results of fencing competitions (initially in the UK but there's no reason why it can't be used elsewhere too). I'd like to use SportsML-G2 to represent the data such that it can be easily exchanged. As SportsML-G2 doesn't support fencing, I'd like to write in that extra functionality to the standard and submit it for inclusion in the next version of the standard. I have the support of the Open University to do this, is it something that SportsML would consider adopting?
+If so, I have a few questions:
+1. How long does it take to get new sports actually added into the standard, once the XSDs have been written?
+2. Is it possible to contribute as a student (I can't get funding to actually join IPTC), or is it best if I work with an existing member and let them make the contribution?
+I've started work on the XSDs here: https://github.com/mattcarus/TM470/blob/master/SportsML-G2/2.2/specification/sportsml-specific-fencing.xsd and here: https://github.com/mattcarus/TM470/blob/master/SportsML-G2/2.2/specification/resource-files/sportsml-vocabulary-specific-fencing.xsd any feedback at this stage would be welcome!
+
+Regards,
+Matt

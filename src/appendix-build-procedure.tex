@@ -1,0 +1,58 @@
+\chapter{Build Procedure} \label{appendixBuildProcedure}
+
+This section is mainly for my own benefit and documents how to do a full build
+(including building this report document) of the FencingArchive project.
+\lstset{
+    frame=single,
+    breaklines=true,
+    postbreak=\raisebox{0ex}[0ex][0ex]{\ensuremath{\color{black}\hookrightarrow\space}}
+}
+\lstdefinelanguage{bash}{
+    keywords = {}
+}
+\begin{enumerate}
+  \item Generate Javadocs
+\begin{lstlisting}[language=bash, caption={Javadoc Generation}]
+cd ~/workspace/FencingArchive
+javadoc -d ./static/javadoc -sourcepath ./src/main/java net.fencingarchive
+javadoc -d ./static/javadoc -sourcepath ./src/main/java sportsml
+\end{lstlisting}
+  \item Maven build of FencingArchive project (either versioned or not, deployed
+  or not)
+\begin{lstlisting}[language=bash, caption={Maven Build}]
+mvn {clean} {release:update-versions} package {tomcat7:redeploy}
+\end{lstlisting}
+  \item Generate effective class diagrams
+  \begin{enumerate}
+    \item \label{objectAidDiagramStart} In Eclipse, navigate to
+    TM470/src/ObjectAid and create new ObjectAid class diagram. All options should be selected, also select the option to save the diagram as png along with the ucls file.
+    \item Drag and drop all of the \(.java\) files from the
+    \(net.fencingarchive\) package into the newly-created diagram.
+    \item \label{objectAidDiagramEnd} Move the classes such that relationships
+    don't overlap classes or other relationships. Relationships can be re-routed by right-clicking on the
+    relationship and selecting \(Auto Route\).
+    \item Repeat stages \ref{objectAidDiagramStart} to
+    \ref{objectAidDiagramEnd} for each package that a class diagram is needed
+    for.
+    \item Update \(models.tex\) to include all class diagram png files.
+  \end{enumerate}
+  \item Generate effective database ER diagram
+  \begin{enumerate}
+    \item Open MySQL Workbench and connect to the correct MySQL instance
+    and database.
+    \item Select \(Database\)-\(Reverse Engineer\)
+    \item Follow the wizard.
+    \item Rearrange the diagram to remove overlaps, if necessary. As much as
+    possible, try to follow the layout of the associated class diagram to make
+    for more straight-forward visual comparison.
+  \end{enumerate}
+  \item Make sure that \(source-code.tex\) contains all the source files that
+  need to be included in the report.
+  \item Download some output XML from the API to a local file to include in the
+  final report. Make sure that this file is included in the relevant \(tex\)
+  file.
+\begin{lstlisting}[language=bash, caption={API Downloads}]
+cd ~/workspace/TM470/...
+wget -O event-1.xml http://127.0.0.1:8080/FencingArchive/api/event/1
+\end{lstlisting}
+\end{enumerate}

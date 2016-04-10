@@ -1,0 +1,19 @@
+\chapter{Problems Encountered} \label{problems-encountered}
+\section{Tomcat Garbage Collection} \label{section:tomcatGarbageCollection}
+I found out that if an application is re-deployed to Tomcat (for example after
+making some changes during development) the existing class instances remain in
+the Java 'PermGen' memory and are not garbage-collegted as you might expect.
+Over time this memory space will fill up and eventually a
+java.lang.OutOfMemoryError exception will be thrown. This had me confused for a
+while but after a bit of Googling I found that the easiest solution is simply to
+restart Tomcat. It is possible to increase the PermGen space however this will
+only delay the problem.
+\section{XML Element Ordering} \label{section:xmlElementOrdering}
+The SportsML schema dictates that elements be ordered correctly - Jersey doesn't
+(and indeed can't) guarentee the order in which elements are rendered. To get
+around this it's possible to define the order by using the
+\(@XmlType\{propOrder=\{\ldots\}\}\) structure.
+\section{Development Environment} \label{section:developmentEnvironment}
+\begin{itemize}
+	\item Disabled EclipseLink caching during development
+\end{itemize}

@@ -1,4 +1,4 @@
-\section{Source Code}
+\chapter{Source Code} \label{sourceCode}
 
 \definecolor{mygreen}{rgb}{0,0.6,0}
 \definecolor{mygray}{rgb}{0.5,0.5,0.5}
@@ -32,9 +32,33 @@
   stepnumber=1,                    % the step between two line-numbers. If it's 1, each line will be numbered
   stringstyle=\color{mymauve},     % string literal style
   tabsize=2,	                   % sets default tabsize to 2 spaces
-  title=\lstname                   % show the filename of files included with \lstinputlisting; also try caption instead of title
+  caption=\lstname                   % show the filename of files included with
+  % \lstinputlisting; also try caption instead of title
 }
+\section{Project Setup Files}
+\lstinputlisting[caption={pom.xml}, language=XML]{../../FencingArchive/pom.xml}
+\lstinputlisting[caption={web.xml},
+language=XML]{../../FencingArchive/web/WEB-INF/web.xml}
+\section{Package: net.fencingarchive}
+\lstinputlisting[caption={net.fencingarchive.FencingArchiveApi()}]{../../FencingArchive/src/main/java/net/fencingarchive/FencingArchiveApi.java}
+\lstinputlisting[caption={net.fencingarchive.Fencer()}]{../../FencingArchive/src/main/java/net/fencingarchive/Fencer.java}
+\lstinputlisting[caption={net.fencingarchive.FencerPerformance()}]{../../FencingArchive/src/main/java/net/fencingarchive/FencerPerformance.java}
+\lstinputlisting[caption={net.fencingarchive.Club()}]{../../FencingArchive/src/main/java/net/fencingarchive/Club.java}
+\lstinputlisting[caption={net.fencingarchive.Event()}]{../../FencingArchive/src/main/java/net/fencingarchive/Event.java}
+\lstinputlisting[caption={net.fencingarchive.Competition()}]{../../FencingArchive/src/main/java/net/fencingarchive/Competition.java}
+\lstinputlisting[caption={net.fencingarchive.Competitor()}]{../../FencingArchive/src/main/java/net/fencingarchive/Competitor.java}
+\lstinputlisting[caption={net.fencingarchive.Round()}]{../../FencingArchive/src/main/java/net/fencingarchive/Round.java}
+\lstinputlisting[caption={net.fencingarchive.Bout()}]{../../FencingArchive/src/main/java/net/fencingarchive/Bout.java}
+\lstinputlisting[caption={net.fencingarchive.Standing()}]{../../FencingArchive/src/main/java/net/fencingarchive/Standing.java}
+\section{Package: sportsml}
+\lstinputlisting[caption={sportsml.SportsContent()}]{../../FencingArchive/src/main/java/sportsml/SportsContent.java}
+\lstinputlisting[caption={sportsml.SportsMetadata()}]{../../FencingArchive/src/main/java/sportsml/SportsMetadata.java}
+\lstinputlisting[caption={sportsml.Tournament()}]{../../FencingArchive/src/main/java/sportsml/Tournament.java}
+\lstinputlisting[caption={sportsml.TournamentMetadata()}]{../../FencingArchive/src/main/java/sportsml/TournamentMetadata.java}
+\lstinputlisting[caption={sportsml.Site()}]{../../FencingArchive/src/main/java/sportsml/Site.java}
+\lstinputlisting[caption={sportsml.SiteMetadata()}]{../../FencingArchive/src/main/java/sportsml/SiteMetadata.java}
+\lstinputlisting[caption={sportsml.HomeLocation()}]{../../FencingArchive/src/main/java/sportsml/HomeLocation.java}
+\lstinputlisting[caption={sportsml.SportsContentCodes()}]{../../FencingArchive/src/main/java/sportsml/SportsContentCodes.java}
+\lstinputlisting[caption={sportsml.SportsContentCode()}]{../../FencingArchive/src/main/java/sportsml/SportsContentCode.java}
 
-\lstinputlisting{dummy_source.java}
-
-
+\newpage

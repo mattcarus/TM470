@@ -20,14 +20,23 @@
 %
 % Just compile this file using pdflatex after making all required changes.
 
-\documentclass[12pt,a4paper,margin=0in]{report}
+%%% This is for PDF version
 
+\documentclass[12pt,a4paper,margin=0in]{report}
 \usepackage{geometry}
 \geometry{a4paper, portrait, margin=1in}
+
+%%% This is for print version
+
+%\documentclass[12pt,a4paper,margin=0in,twoside,openright]{report}
+%\usepackage{geometry}
+%\geometry{a4paper, portrait, top=15mm, bottom=20mm, left=40mm, right=15mm}
+
 \usepackage{tabulary}
 \usepackage{longtable}
 \usepackage{varioref}
-\usepackage[pdftex]{graphicx} %for embedding images
+\usepackage{graphicx} %for embedding images
+\graphicspath{ {images/} }
 \usepackage{url} %for proper url entries
 \usepackage[bookmarks, colorlinks=false, pdfborder={0 0 0}, pdftitle={A
 Fencing Competition Results Web Service}, pdfauthor={Matthew Carus},
@@ -54,7 +63,7 @@ Computing, IT, Report, TM470}]{hyperref}
     \rule{\textwidth}{2pt}
     \vspace{1ex}
     \centering
-    \thechapter\quad
+    %\thechapter\quad
 } % before-code
 [
 \vspace{-0.5ex}%
@@ -80,9 +89,33 @@ Computing, IT, Report, TM470}]{hyperref}
 \tableofcontents
 \listoffigures
 \listoftables
+\lstlistoflistings
+
+%%% Reset chapter heading to include number
 
 \newpage
 \pagenumbering{arabic} %reset numbering to normal for the main content
+
+\titleformat
+{\chapter} % command
+[display] % shape
+{\bfseries\Large\itshape} % format
+%{\normalfont\huge\bfseries}
+{}
+% {Part \ \thechapter} % label
+{0ex} % sep
+{
+    \rule{\textwidth}{2pt}
+    \vspace{1ex}
+    \centering
+    \thechapter\quad
+} % before-code
+[
+\vspace{-0.5ex}%
+\rule{\textwidth}{0.3pt}
+] % after-code
+\titlespacing*{\chapter}{0pt}{-50pt}{40pt}
+
 
 \input{prob-definition} %objective changed to problem definition
 % \input{introduction} %literature survey included in this
@@ -90,7 +123,8 @@ Computing, IT, Report, TM470}]{hyperref}
 \input{project-plan}
 \input{research}
 \input{models}
-\input{work-done}
+\input{design-decisions}
+\input{problems-encountered}
 \input{source-code}
 
 \input{acknow}
@@ -101,6 +135,7 @@ Computing, IT, Report, TM470}]{hyperref}
 \begin{appendices}
 \input{appendix-sample-fencing-xml}
 \input{appendix-sample-fencing-sportsml}
+\input{appendix-build-procedure}
 \end{appendices}
 
 \end{document}
